@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وظائف جدة | القطاع الخاص</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1a1a2e;--accent:#e94560;--accent2:#0f3460;
+  --green:#00b894;--surface:#fff;--surface2:#f8f9ff;
+  --border:#e8eaf6;--text:#1a1a2e;--muted:#6c7293;
+  --shadow:0 4px 24px rgba(26,26,46,.08);--r:16px;--rs:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:#f0f2f8;color:var(--text);direction:rtl}
+
+/* ── HEADER ── */
+header{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hi{max-width:1320px;margin:0 auto;padding:15px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-icon{width:43px;height:43px;background:var(--accent);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px}
+.logo-t{color:#fff;font-size:21px;font-weight:900}
+.logo-s{color:rgba(255,255,255,.5);font-size:11px}
+.hs{flex:1;min-width:200px;position:relative}
+.hs input{width:100%;padding:11px 20px 11px 46px;border:1.5px solid rgba(255,255,255,.15);border-radius:50px;background:rgba(255,255,255,.1);color:#fff;font-family:'Tajawal',sans-serif;font-size:15px;outline:none;transition:.2s}
+.hs input::placeholder{color:rgba(255,255,255,.4)}
+.hs input:focus{background:rgba(255,255,255,.18);border-color:var(--accent)}
+.si{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
+.hst{display:flex;gap:10px;align-items:center}
+.sp{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:50px;padding:5px 13px;color:#fff;font-size:13px;display:flex;align-items:center;gap:6px}
+.sd{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.cb{background:rgba(233,69,96,.22);border:1px solid rgba(233,69,96,.45);color:#ff8fa3;border-radius:50px;padding:5px 12px;font-size:13px;font-weight:700}
+
+/* ── CATS ── */
+.cats{background:var(--accent2);padding:0 24px;overflow-x:auto;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.ci{max-width:1320px;margin:0 auto;display:flex;gap:4px;padding:9px 0;white-space:nowrap}
+.cb2{padding:7px 17px;border:none;border-radius:50px;background:transparent;color:rgba(255,255,255,.65);font-family:'Tajawal',sans-serif;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.cb2:hover{background:rgba(255,255,255,.12);color:#fff}
+.cb2.active{background:var(--accent);color:#fff;font-weight:700}
+.cc{background:rgba(255,255,255,.2);border-radius:50px;padding:1px 6px;font-size:11px}
+.cb2.active .cc{background:rgba(0,0,0,.2)}
+
+/* ── MAIN GRID ── */
+.main{max-width:1320px;margin:0 auto;padding:24px;display:grid;grid-template-columns:285px 1fr;gap:22px;align-items:start}
+
+/* ── SIDEBAR ── */
+.sb{position:sticky;top:112px;display:flex;flex-direction:column;gap:14px}
+.sc{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:18px;box-shadow:var(--shadow)}
+.st{font-size:15px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+
+/* Timer */
+.tr{width:76px;height:76px;margin:8px auto}
+.tr svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tr circle{fill:none;stroke-width:5;stroke-linecap:round}
+.tr .tk{stroke:#e8eaf6}
+.tr .tp{stroke:var(--accent);stroke-dasharray:220;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear}
+.tn{text-align:center;font-size:27px;font-weight:900;color:var(--accent);margin-top:-56px;position:relative;z-index:1;line-height:76px}
+.tl{text-align:center;font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Sources list */
+.srcl{display:flex;flex-direction:column;gap:7px}
+.sri{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:var(--rs);background:var(--surface2);border:1px solid var(--border);transition:.15s}
+.sri:hover{border-color:var(--accent2)}
+.srn{display:flex;align-items:center;gap:9px}
+.sricon{width:26px;height:26px;border-radius:7px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0}
+.srinfo{display:flex;flex-direction:column;gap:1px}
+.srtitle{font-weight:700;font-size:13px;color:var(--text)}
+.srlink{font-size:11px;color:var(--accent2);text-decoration:none}
+.srlink:hover{text-decoration:underline;color:var(--accent)}
+.srcnt{background:var(--accent2);color:#fff;font-size:11px;padding:2px 9px;border-radius:50px;font-weight:700;min-width:28px;text-align:center}
+
+/* Filters */
+.fg{margin-bottom:13px}
+.fl{font-size:13px;color:var(--muted);margin-bottom:5px;font-weight:500}
+select.fs{
+  width:100%;padding:10px 12px;
+  border:1.5px solid var(--border);border-radius:var(--rs);
+  font-family:'Tajawal',sans-serif;font-size:14px;
+  color:var(--text);background:var(--surface);cursor:pointer;outline:none;
+  -webkit-appearance:auto;appearance:auto;
+}
+select.fs:focus{border-color:var(--accent)}
+.rb{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;margin-top:4px}
+.rb:hover{background:#c7314d;transform:translateY(-1px)}
+
+/* ── CONTENT ── */
+.co{min-height:600px}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.ct{font-size:18px;font-weight:700}
+.ck{font-size:14px;color:var(--muted);margin-top:2px}
+.sbs{display:flex;gap:6px}
+.sb2{padding:7px 14px;border:1.5px solid var(--border);border-radius:50px;background:var(--surface);font-family:'Tajawal',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:.2s}
+.sb2.active,.sb2:hover{border-color:var(--accent);color:var(--accent);background:#fff0f3}
+
+/* ── JOB CARD ── */
+.jg{display:flex;flex-direction:column;gap:13px}
+.jc{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;transition:.25s;animation:si .35s ease}
+@keyframes si{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.jc:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(233,69,96,.12);transform:translateY(-2px)}
+
+/* Source strip */
+.ss{display:flex;align-items:center;justify-content:space-between;padding:9px 18px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.ssl{display:flex;align-items:center;gap:10px}
+.ssic{width:30px;height:30px;border-radius:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+.ssname{font-size:14px;font-weight:800;color:var(--text)}
+.sslink{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:3px;padding:3px 10px;border:1px solid var(--accent);border-radius:20px;transition:.15s}
+.sslink:hover{background:var(--accent);color:#fff}
+.ssr{display:flex;align-items:center;gap:8px}
+.pvbadge{background:#e8fdf2;color:#1b6b3a;font-size:11px;padding:3px 9px;border-radius:50px;font-weight:700;border:1px solid #c0eacf}
+
+/* Card body */
+.jci{padding:17px 20px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.jh{display:flex;align-items:flex-start;gap:12px}
+.clogo{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;border:1.5px solid var(--border);background:var(--surface2)}
+.ji{flex:1}
+.jtitle{font-size:16px;font-weight:700;margin-bottom:3px;line-height:1.3}
+.jco{font-size:14px;font-weight:600;color:var(--accent2);margin-bottom:9px}
+.jmeta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.mt{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:4px 10px;border-radius:50px;font-weight:600}
+.ml{background:#e8f4fd;color:#1565c0}
+.mty{background:#e8fdf2;color:#1b6b3a}
+.msal{background:#fff3cd;color:#856404;border:1px solid #ffd970;font-size:13px;font-weight:700;padding:5px 12px}
+.mcat{background:#f3e8ff;color:#6b21a8}
+.bnew{background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:700;margin-left:5px;vertical-align:middle}
+.jdesc{font-size:13.5px;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Actions */
+.ja{display:flex;flex-direction:column;gap:7px;min-width:148px}
+.bwa{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 16px;background:#25d366;color:#fff;text-decoration:none;border-radius:var(--rs);font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;transition:.2s;border:none;cursor:pointer}
+.bwa:hover{background:#1da855;transform:scale(1.02)}
+.bwa svg{width:18px;height:18px;fill:#fff}
+.ci2{display:flex;flex-direction:column;gap:5px}
+.cr{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);padding:7px 11px;background:var(--surface2);border-radius:var(--rs);border:1px solid var(--border);cursor:pointer;transition:.15s;position:relative}
+.cr:hover{border-color:var(--accent2);color:var(--accent2)}
+.cpy{position:absolute;left:7px;top:50%;transform:translateY(-50%);background:var(--green);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;opacity:0;transition:.2s;pointer-events:none}
+.cr.copied .cpy{opacity:1}
+
+/* Footer */
+.jf{border-top:1px solid var(--border);padding:9px 20px;display:flex;align-items:center;justify-content:space-between}
+.pt{font-size:12px;color:var(--muted)}
+.jtag{font-size:11px;padding:3px 10px;border-radius:50px;background:#fff3e0;color:#e65100;font-weight:700;border:1px solid #ffe0b2}
+
+/* Archive */
+.arc{margin-top:28px;padding-top:22px;border-top:2px dashed var(--border)}
+.arct{font-size:16px;font-weight:700;color:var(--muted);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.ptabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ptab{padding:7px 15px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);font-family:'Tajawal',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:.2s}
+.ptab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.ptab:hover:not(.active){border-color:var(--accent2);color:var(--accent2)}
+
+.lo{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:var(--muted);gap:14px}
+.sp2{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--primary);color:#fff;padding:12px 22px;border-radius:50px;font-size:14px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:1000;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.nr{text-align:center;padding:56px 20px;color:var(--muted);font-size:15px}
+.nr .ic{font-size:46px;margin-bottom:11px}
+
+@media(max-width:900px){.main{grid-template-columns:1fr}.sb{position:static}.jci{grid-template-columns:1fr}.ja{flex-direction:row;flex-wrap:wrap}}
+@media(max-width:600px){.hi{padding:13px 16px}.main{padding:14px;gap:14px}.hst{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="logo">
+      <div class="logo-icon">💼</div>
+      <div>
+        <div class="logo-t">وظائف جدة</div>
+        <div class="logo-s">القطاع الخاص — تحديث كل دقيقة</div>
+      </div>
+    </div>
+    <div class="hs">
+      <span class="si">🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث بالوظيفة، الشركة، أو المصدر..." oninput="filterJobs()">
+    </div>
+    <div class="hst">
+      <div class="cb">📍 جدة فقط</div>
+      <div class="sp"><div class="sd"></div><span id="liveCount">0</span> إعلان</div>
+      <div class="sp">🕒 <span id="lastUpdate">الآن</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="cats">
+  <div class="ci">
+    <button class="cb2 active" onclick="selCat('all',this)">🌐 الكل <span class="cc" id="cnt-all">0</span></button>
+    <button class="cb2" onclick="selCat('تصميم',this)">🎨 تصميم <span class="cc" id="cnt-تصميم">0</span></button>
+    <button class="cb2" onclick="selCat('تسويق',this)">📣 تسويق <span class="cc" id="cnt-تسويق">0</span></button>
+    <button class="cb2" onclick="selCat('توصيل',this)">🛵 توصيل <span class="cc" id="cnt-توصيل">0</span></button>
+    <button class="cb2" onclick="selCat('إدارية',this)">🗂 إدارية <span class="cc" id="cnt-إدارية">0</span></button>
+    <button class="cb2" onclick="selCat('عمال',this)">🔧 عمال <span class="cc" id="cnt-عمال">0</span></button>
+    <button class="cb2" onclick="selCat('تقنية',this)">💻 تقنية <span class="cc" id="cnt-تقنية">0</span></button>
+    <button class="cb2" onclick="selCat('مبيعات',this)">📊 مبيعات <span class="cc" id="cnt-مبيعات">0</span></button>
+    <button class="cb2" onclick="selCat('محاسبة',this)">📑 محاسبة <span class="cc" id="cnt-محاسبة">0</span></button>
+    <button class="cb2" onclick="selCat('تعليم',this)">📚 تعليم خاص <span class="cc" id="cnt-تعليم">0</span></button>
+    <button class="cb2" onclick="selCat('أمن',this)">🔒 أمن وسلامة <span class="cc" id="cnt-أمن">0</span></button>
+    <button class="cb2" onclick="selCat('ضيافة',this)">🍽 ضيافة ومطاعم <span class="cc" id="cnt-ضيافة">0</span></button>
+    <button class="cb2" onclick="selCat('لوجستيك',this)">🏭 لوجستيك <span class="cc" id="cnt-لوجستيك">0</span></button>
+  </div>
+</div>
+
+<div class="main">
+  <!-- SIDEBAR -->
+  <aside class="sb">
+
+    <!-- Timer -->
+    <div class="sc">
+      <div class="st">⏱ التحديث التلقائي</div>
+      <div class="tr">
+        <svg viewBox="0 0 80 80">
+          <circle class="tk" cx="40" cy="40" r="35"/>
+          <circle class="tp" id="timerRing" cx="40" cy="40" r="35"/>
+        </svg>
+      </div>
+      <div class="tn" id="timerNum">60</div>
+      <div class="tl">ثانية حتى التحديث</div>
+    </div>
+
+    <!-- Sources -->
+    <div class="sc">
+      <div class="st">🌐 مصادر الإعلانات</div>
+      <div class="srcl" id="sourcesList"></div>
+    </div>
+
+    <!-- Hidden filter inputs (used by JS only) -->
+    <select id="filterType" style="display:none"></select>
+    <select id="filterSource" style="display:none"></select>
+    <select id="filterSalary" style="display:none"></select>
+
+    <button class="rb" onclick="manualRefresh()">🔄 تحديث الآن</button>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="co">
+    <div class="ch">
+      <div>
+        <div class="ct" id="contentTitle">وظائف جدة — القطاع الخاص</div>
+        <div class="ck" id="contentCount">جاري التحميل...</div>
+      </div>
+      <div class="sbs">
+        <button class="sb2 active" onclick="sortJ('newest',this)">الأحدث</button>
+        <button class="sb2" onclick="sortJ('salary',this)">الراتب</button>
+        <button class="sb2" onclick="sortJ('company',this)">الشركة</button>
+      </div>
+    </div>
+    <div class="jg" id="jobsGrid">
+      <div class="lo"><div class="sp2"></div><div>جاري جلب وظائف جدة...</div></div>
+    </div>
+    <div class="arc" id="arcSec" style="display:none">
+      <div class="arct">📁 أرشيف الإعلانات السابقة</div>
+      <div class="ptabs" id="pageTabs"></div>
+      <div class="jg" id="archiveGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ تم التحديث</div>
+
+<script>
+// ═══════════════════════════════
+//  CONFIG
+// ═══════════════════════════════
+let allJobs=[], archivedPages=[], curCat='all', curSort='newest', pageIdx=0, timerInt=null, cd=60;
+const C = 2*Math.PI*35; // ~220
+
+const SRC = {
+  'Jobs Arab': {s:'JA', c:'#c0392b', url:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  'Bayt':      {s:'BY', c:'#1565c0', url:'https://www.bayt.com/ar/saudi-arabia/jobs/?filters%5Blocation_country_iso_code_ex%5D%5B0%5D=sa&filters%5Blocation_state_name_ar%5D%5B0%5D=%D8%AC%D8%AF%D8%A9'},
+  'Tanqeeb':   {s:'TQ', c:'#2e7d32', url:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  'Indeed SA': {s:'IN', c:'#1a237e', url:'https://sa.indeed.com/jobs?l=Jeddah&from=searchOnHP'},
+  'Baaeed':    {s:'BA', c:'#6a1b9a', url:'https://baaeed.com/'},
+  'LinkedIn':  {s:'LI', c:'#0077b5', url:'https://www.linkedin.com/jobs/search/?location=Jeddah%2C+Makkah+Province%2C+Saudi+Arabia'},
+  'Mustakbal': {s:'MS', c:'#00838f', url:'https://mustakbal.com/jobs?city=jeddah'},
+  'Wuzzuf':    {s:'WZ', c:'#bf360c',  url:'https://wuzzuf.net/search/jobs/?q=&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+};
+
+// ═══════════════════════════════
+//  JOB POOL — جدة القطاع الخاص
+// ═══════════════════════════════
+const JP=[
+  // تصميم
+  {t:'مصمم جرافيك',co:'وكالة إبداع للتصميم',cat:'تصميم',ty:'دوام كامل',sn:7500,sal:'6,000 – 9,000 ريال',loc:'جدة - حي الروضة',desc:'مصمم جرافيك محترف بخبرة لا تقل عن سنتين في Adobe Suite وإنتاج مواد الطباعة والرقمية.',ph:'966556123411',em:'design@ibda3sa.com',src:'Bayt',ej:'🎨',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/graphic-designer-jeddah/'},
+  {t:'مصمم UI/UX',co:'تك ستارت السعودية',cat:'تصميم',ty:'دوام كامل',sn:12000,sal:'10,000 – 14,000 ريال',loc:'جدة - طريق الملك عبدالعزيز',desc:'مطلوب مصمم UI/UX لتطوير تطبيقات الجوال وواجهات الويب، خبرة Figma مطلوبة.',ph:'966512345678',em:'hr@techstart.sa',src:'LinkedIn',ej:'🖥',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=UI+UX+Designer&location=Jeddah'},
+  {t:'مصمم هوية بصرية',co:'ستوديو كريتف جدة',cat:'تصميم',ty:'عقد',sn:9000,sal:'7,500 – 11,000 ريال',loc:'جدة - حي التيسير',desc:'فرصة لمصمم هوية بصرية للانضمام إلى فريق إبداعي وتنفيذ مشاريع علامات تجارية.',ph:'966541235678',em:'jobs@creativestudio.sa',src:'Jobs Arab',ej:'✏️',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'مصور فوتوغرافي ومصمم',co:'ريل ميديا للإنتاج',cat:'تصميم',ty:'دوام جزئي',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - الكورنيش',desc:'مطلوب مصور ومصمم للعمل في تصوير المنتجات والمحتوى الرقمي لعملاء التجارة الإلكترونية.',ph:'966534567890',em:'info@realmedia.sa',src:'Baaeed',ej:'📷',
+    jobUrl:'https://baaeed.com/'},
+  {t:'مصمم إعلانات رقمية',co:'فلاشر ميديا جدة',cat:'تصميم',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الأندلس',desc:'تصميم إعلانات ميتا وجوجل وسناب، خبرة After Effects ميزة.',ph:'966543218765',em:'creative@flashermedia.sa',src:'Tanqeeb',ej:'🖼',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  // تسويق
+  {t:'مدير تسويق رقمي',co:'نيكست ليفل ماركتينج',cat:'تسويق',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - حي السلامة',desc:'خبرة 3 سنوات في إدارة حملات السوشيال ميديا وإعلانات Google و Meta.',ph:'966567891234',em:'talent@nextlevel.sa',src:'Bayt',ej:'📣',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/digital-marketing-manager-jeddah/'},
+  {t:'متخصص سوشيال ميديا',co:'أونلاين بوست',cat:'تسويق',ty:'دوام جزئي',sn:5500,sal:'4,500 – 6,500 ريال',loc:'جدة - عن بعد',desc:'إدارة حسابات التواصل الاجتماعي وصياغة المحتوى اليومي للعلامات التجارية.',ph:'966512398765',em:'social@onlinepost.sa',src:'Tanqeeb',ej:'📱',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مسوّق محتوى رقمي',co:'ريد كونتنت',cat:'تسويق',ty:'عن بعد',sn:6500,sal:'5,000 – 8,000 ريال',loc:'جدة - عن بُعد',desc:'كتابة محتوى تسويقي باللغتين العربية والإنجليزية لمواقع التجارة الإلكترونية.',ph:'966523456789',em:'content@redco.sa',src:'Indeed SA',ej:'📝',
+    jobUrl:'https://sa.indeed.com/jobs?q=content+marketing&l=Jeddah'},
+  {t:'مدير تسويق — مطاعم',co:'فود كورنر الخليج',cat:'تسويق',ty:'دوام كامل',sn:11000,sal:'9,500 – 13,000 ريال',loc:'جدة - حي الحمراء',desc:'قيادة استراتيجية التسويق لسلسلة مطاعم في جدة وتطوير هوية العلامة التجارية.',ph:'966556001122',em:'marketing@foodcorner.sa',src:'LinkedIn',ej:'🍔',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Marketing+Manager&location=Jeddah'},
+  // توصيل
+  {t:'سائق توصيل',co:'نون السعودية',cat:'توصيل',ty:'دوام كامل',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - جميع الأحياء',desc:'توصيل طلبات العملاء في جدة الكبرى، يشترط رخصة قيادة سارية.',ph:'966555123456',em:'drivers@noon.com',src:'Indeed SA',ej:'🛵',
+    jobUrl:'https://sa.indeed.com/jobs?q=driver+delivery&l=Jeddah'},
+  {t:'مندوب توصيل — دوام مرن',co:'جهّز ديليفري',cat:'توصيل',ty:'دوام جزئي',sn:3500,sal:'2,500 – 4,000 ريال',loc:'جدة - شمال جدة',desc:'توصيل طلبات المطاعم والمحلات — دوام مرن — مكافآت يومية.',ph:'966567123456',em:'hr@jahhiz.sa',src:'Jobs Arab',ej:'🏍',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'سائق شاحنة خفيفة',co:'لوجستيك العرب',cat:'توصيل',ty:'دوام كامل',sn:6000,sal:'5,500 – 7,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'نقل بضائع بين المستودعات ونقاط التسليم في جدة، خبرة قيادة تجارية مطلوبة.',ph:'966543219876',em:'fleet@arablogistic.sa',src:'Tanqeeb',ej:'🚛',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'سائق خاص',co:'عائلة الزهراني',cat:'توصيل',ty:'دوام كامل',sn:4500,sal:'4,000 – 5,500 ريال',loc:'جدة - حي الزهراء',desc:'سائق خاص للعائلة، ساعات منتظمة، إقامة ورعاية صحية مشمولة.',ph:'966512001234',em:'',src:'Baaeed',ej:'🚗',
+    jobUrl:'https://baaeed.com/'},
+  // إدارية
+  {t:'سكرتيرة تنفيذية',co:'مجموعة النخبة القابضة',cat:'إدارية',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الحمراء',desc:'خبرة 3 سنوات في العمل الإداري، إتقان Office وإجادة اللغة الإنجليزية.',ph:'966512309876',em:'admin@nokhbagroup.sa',src:'Bayt',ej:'🗂',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/executive-secretary-jeddah/'},
+  {t:'موظف استقبال — فندق',co:'جراند ريزورت جدة',cat:'إدارية',ty:'دوام كامل',sn:6000,sal:'5,000 – 7,000 ريال',loc:'جدة - الكورنيش',desc:'استقبال الضيوف، الرد على المكالمات، التنسيق مع الأقسام.',ph:'966556789012',em:'hr@grandresort.sa',src:'LinkedIn',ej:'🏨',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Receptionist&location=Jeddah'},
+  {t:'مشرف عمليات',co:'ألفا لوجستيكس جدة',cat:'إدارية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'الإشراف على العمليات اليومية وفرق العمل وتحقيق أهداف الأداء.',ph:'966523456012',em:'ops@alphalogistics.sa',src:'Mustakbal',ej:'📋',
+    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مدير مكتب تنفيذي',co:'الخليج للاستشارات',cat:'إدارية',ty:'دوام كامل',sn:13000,sal:'11,000 – 15,000 ريال',loc:'جدة - حي الزهراء',desc:'إدارة المكتب التنفيذي وتنسيق اجتماعات مجلس الإدارة.',ph:'966598012345',em:'office@gulfconsult.sa',src:'Bayt',ej:'🏢',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/office-manager-jeddah/'},
+  {t:'موظف موارد بشرية',co:'الريان للتطوير',cat:'إدارية',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - حي الصفا',desc:'تعيين الموظفين، إعداد العقود، متابعة الحضور والإجازات.',ph:'966511234098',em:'hr@alrayan-dev.sa',src:'Indeed SA',ej:'👥',
+    jobUrl:'https://sa.indeed.com/jobs?q=HR&l=Jeddah'},
+  // عمال
+  {t:'عمال بناء وتشطيب',co:'إنشاءات الخليج',cat:'عمال',ty:'دوام كامل',sn:4000,sal:'3,000 – 4,500 ريال',loc:'جدة - مشاريع متعددة',desc:'مطلوب عمال بناء ذوو خبرة في التشييد والسباكة والكهرباء.',ph:'966511234500',em:'workers@gulfbuild.sa',src:'Jobs Arab',ej:'🔨',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'عمال تنظيف',co:'النظافة الذهبية',cat:'عمال',ty:'دوام كامل',sn:3400,sal:'2,800 – 4,000 ريال',loc:'جدة - الأحياء الشمالية',desc:'وظائف تنظيف للمجمعات التجارية والسكنية. توفير سكن ووجبات.',ph:'966534509876',em:'clean@golden-clean.sa',src:'Indeed SA',ej:'🧹',
+    jobUrl:'https://sa.indeed.com/jobs?q=cleaning&l=Jeddah'},
+  {t:'عمال مستودع وتغليف',co:'ستور بلس جدة',cat:'عمال',ty:'دوام كامل',sn:4200,sal:'3,500 – 5,000 ريال',loc:'جدة - المنطقة الصناعية الجديدة',desc:'تحميل وتفريغ البضائع، ترتيب المستودع، إدارة المخزون.',ph:'966567043210',em:'warehouse@storeplus.sa',src:'Tanqeeb',ej:'📦',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'كهربائي صناعي',co:'تك باور للصناعة',cat:'عمال',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - المنطقة الصناعية',desc:'صيانة الأنظمة الكهربائية الصناعية، خبرة 3 سنوات مطلوبة.',ph:'966543200987',em:'electrical@techpower.sa',src:'Wuzzuf',ej:'⚡',
+    jobUrl:'https://wuzzuf.net/search/jobs/?q=electrician&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  // تقنية
+  {t:'مطور تطبيقات موبايل',co:'ديجيتال هب السعودية',cat:'تقنية',ty:'دوام كامل',sn:16000,sal:'13,000 – 19,000 ريال',loc:'جدة - حي الشاطئ',desc:'Flutter أو React Native، خبرة سنتان في نشر التطبيقات على Store و Play.',ph:'966512345609',em:'dev@digitalhub.sa',src:'LinkedIn',ej:'📱',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Mobile+Developer&location=Jeddah'},
+  {t:'مطور ويب Laravel/Vue',co:'كود فاكتوري',cat:'تقنية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - عن بعد',desc:'بناء مواقع وبوابات إلكترونية لعملاء السوق السعودي.',ph:'966523049876',em:'careers@codefactory.sa',src:'Wuzzuf',ej:'💻',
+    jobUrl:'https://wuzzuf.net/search/jobs/?q=web+developer&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'مسؤول أمن معلومات',co:'سيبر شيلد',cat:'تقنية',ty:'دوام كامل',sn:17000,sal:'14,000 – 20,000 ريال',loc:'جدة - حي العزيزية',desc:'إدارة شبكات المؤسسة واختبار الاختراق وتطبيق سياسات الأمن السيبراني.',ph:'966556780123',em:'security@cybershield.sa',src:'Bayt',ej:'🛡',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/cybersecurity-jeddah/'},
+  {t:'محلل بيانات',co:'داتا إنسايت العربية',cat:'تقنية',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - طريق المدينة المنورة',desc:'تحليل البيانات وبناء لوحات التحكم باستخدام Power BI وPython وSQL.',ph:'966534001122',em:'data@datainsight.sa',src:'Mustakbal',ej:'📈',
+    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  // مبيعات
+  {t:'مندوب مبيعات ميداني',co:'هاربور تريد',cat:'مبيعات',ty:'دوام كامل',sn:7000,sal:'5,000 + عمولة',loc:'جدة - البلد التجاري',desc:'بيع أجهزة كهربائية بالجملة وبناء علاقات مع تجار التجزئة.',ph:'966512098765',em:'sales@harbourtr.sa',src:'Indeed SA',ej:'📊',
+    jobUrl:'https://sa.indeed.com/jobs?q=sales+representative&l=Jeddah'},
+  {t:'مدير مبيعات إقليمي',co:'بريميوم كونسيومر',cat:'مبيعات',ty:'دوام كامل',sn:18000,sal:'15,000 – 22,000 ريال',loc:'جدة - جميع المناطق',desc:'قيادة فريق مبيعات ميداني وتحقيق أهداف المنطقة الغربية.',ph:'966567890123',em:'region@premiumco.sa',src:'Bayt',ej:'🏆',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/sales-manager-jeddah/'},
+  {t:'مستشار مبيعات عقارية',co:'ذا هومز العقارية',cat:'مبيعات',ty:'عقد',sn:9000,sal:'راتب + عمولة',loc:'جدة - حي الشاطئ',desc:'تسويق وبيع وحدات سكنية فاخرة في جدة.',ph:'966556112233',em:'sales@thehomes.sa',src:'Baaeed',ej:'🏠',
+    jobUrl:'https://baaeed.com/'},
+  // محاسبة
+  {t:'محاسب عام',co:'الواحة للاستثمار',cat:'محاسبة',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي النزهة',desc:'إعداد الميزانيات والتقارير المالية الشهرية، خبرة سنتان.',ph:'966534012345',em:'finance@waha-invest.sa',src:'Tanqeeb',ej:'📑',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مراجع حسابات داخلي',co:'مجموعة الفيصل التجارية',cat:'محاسبة',ty:'دوام كامل',sn:12000,sal:'10,000 – 14,000 ريال',loc:'جدة - برج الفيصلية',desc:'مراجعة العمليات المالية والتأكد من الامتثال للسياسات الداخلية.',ph:'966512345890',em:'audit@faisal-group.sa',src:'LinkedIn',ej:'🔍',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Accountant&location=Jeddah'},
+  {t:'مدير مالي',co:'أتلانتس للتجارة',cat:'محاسبة',ty:'دوام كامل',sn:19000,sal:'16,000 – 22,000 ريال',loc:'جدة - حي الزهراء',desc:'إدارة الشؤون المالية والتخطيط الاستراتيجي وإعداد التقارير.',ph:'966543298001',em:'cfo@atlantis-trade.sa',src:'Bayt',ej:'💼',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/finance-manager-jeddah/'},
+  // تعليم خاص
+  {t:'معلمة رياضيات — أهلية',co:'مدارس المستقبل الأهلية',cat:'تعليم',ty:'دوام كامل',sn:7500,sal:'6,000 – 8,500 ريال',loc:'جدة - حي الفيصلية',desc:'تدريس الرياضيات للمرحلتين المتوسطة والثانوية في مدارس خاصة.',ph:'966556001234',em:'edu@mustaqbal-schools.sa',src:'Mustakbal',ej:'📚',
+    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مدرس لغة إنجليزية',co:'أكاديمية اللغات الدولية',cat:'تعليم',ty:'دوام جزئي',sn:4500,sal:'3,500 – 5,500 ريال',loc:'جدة - حي الصفا',desc:'تدريس اللغة الإنجليزية لجميع الأعمار في مركز لغات خاص.',ph:'966598765001',em:'english@intl-academy.sa',src:'Jobs Arab',ej:'🌍',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'مشرف أكاديمي',co:'مجموعة تعليم العالمية',cat:'تعليم',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - حي الروضة',desc:'الإشراف على المناهج وتدريب المعلمين في مجموعة مدارس خاصة.',ph:'966512554433',em:'academic@taleem-intl.sa',src:'Tanqeeb',ej:'🎓',
+    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  // أمن خاص
+  {t:'حارس أمن — مجمع تجاري',co:'فيجيل الأمنية',cat:'أمن',ty:'دوام كامل',sn:4700,sal:'4,000 – 5,500 ريال',loc:'جدة - مجمعات تجارية',desc:'حراسة المنشآت التجارية الخاصة، لياقة جيدة مطلوبة.',ph:'966567001234',em:'security@vigilsa.sa',src:'Jobs Arab',ej:'🔒',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'مشرف أمن',co:'النخبة للحراسات',cat:'أمن',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - حي الحمراء',desc:'قيادة فريق حراسة لمنشأة تجارية كبرى، خبرة CCTV.',ph:'966543012987',em:'ops@nokhbasecurity.sa',src:'Bayt',ej:'🛡',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/security-supervisor-jeddah/'},
+  // ضيافة
+  {t:'طاهٍ رئيسي',co:'مطعم كابريستو جدة',cat:'ضيافة',ty:'دوام كامل',sn:8000,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الزهراء',desc:'طاهٍ رئيسي متخصص في المطبخ الإيطالي أو الغربي، خبرة 4 سنوات في مطاعم راقية.',ph:'966512991100',em:'chef@capristo-jeddah.sa',src:'Indeed SA',ej:'👨‍🍳',
+    jobUrl:'https://sa.indeed.com/jobs?q=chef&l=Jeddah'},
+  {t:'موظف كاشير ومبيعات',co:'مقهى ريتشو',cat:'ضيافة',ty:'دوام جزئي',sn:3500,sal:'3,000 – 4,500 ريال',loc:'جدة - حي الأندلس',desc:'تشغيل الكاشير واستقبال الزبائن وتقديم المشروبات.',ph:'966567223344',em:'jobs@richocafe.sa',src:'Baaeed',ej:'☕',
+    jobUrl:'https://baaeed.com/'},
+  {t:'مدير مطعم',co:'سلسلة برجر كلاود',cat:'ضيافة',ty:'دوام كامل',sn:10000,sal:'9,000 – 12,000 ريال',loc:'جدة - فروع متعددة',desc:'إدارة عمليات الفرع والفريق وجودة الخدمة وتحقيق أهداف الإيرادات.',ph:'966534991234',em:'management@burgercloud.sa',src:'Mustakbal',ej:'🍔',
+    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'نادل خدمة طاولات',co:'ريزورت باي جدة',cat:'ضيافة',ty:'دوام كامل',sn:4000,sal:'3,500 – 5,000 ريال',loc:'جدة - الكورنيش',desc:'خدمة الطاولات في مطعم فاخر، إجادة اللغة الإنجليزية ميزة.',ph:'966556443322',em:'fb@resortbay.sa',src:'Wuzzuf',ej:'🍽',
+    jobUrl:'https://wuzzuf.net/search/jobs/?q=waiter&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  // لوجستيك
+  {t:'مشرف مستودع',co:'العربية للتخزين',cat:'لوجستيك',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - المنطقة اللوجستية',desc:'إدارة عمليات المستودع وفريق العمل والمخزون وضمان الشحن بالوقت.',ph:'966523456700',em:'warehouse@arabstorage.sa',src:'Jobs Arab',ej:'🏭',
+    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'منسق شحن وجمارك',co:'سيفر للشحن البحري',cat:'لوجستيك',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - ميناء الملك عبدالعزيز',desc:'تنسيق شحنات الاستيراد والتصدير وإجراءات الجمارك.',ph:'966567890100',em:'logistics@severshipping.sa',src:'Bayt',ej:'🚢',
+    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/logistics-jeddah/'},
+  {t:'مخطط سلسلة توريد',co:'فلو سابلاي',cat:'لوجستيك',ty:'دوام كامل',sn:13000,sal:'11,000 – 16,000 ريال',loc:'جدة - حي الشرفية',desc:'تخطيط وتحسين سلسلة التوريد لعملاء التجارة الإلكترونية.',ph:'966512778899',em:'supply@flowsupply.sa',src:'LinkedIn',ej:'🔄',
+    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Supply+Chain&location=Jeddah'},
+];
+
+const CATS=['تصميم','تسويق','توصيل','إدارية','عمال','تقنية','مبيعات','محاسبة','تعليم','أمن','ضيافة','لوجستيك'];
+
+// ═══════════════════════════════
+//  BUILD SIDEBAR SOURCES
+// ═══════════════════════════════
+function buildSources(){
+  document.getElementById('sourcesList').innerHTML = Object.entries(SRC).map(([n,m])=>`
+    <div class="sri">
+      <div class="srn">
+        <div class="sricon" style="background:${m.c}">${m.s}</div>
+        <div class="srinfo">
+          <div class="srtitle">${n}</div>
+          <a href="${m.url}" target="_blank" class="srlink">🔗 زيارة الموقع</a>
+        </div>
+      </div>
+      <span class="srcnt" id="src-${n.replace(/ /g,'_')}">0</span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════
+//  GENERATE
+// ═══════════════════════════════
+function genBatch(n=14){
+  const sh=[...JP].sort(()=>Math.random()-.5);
+  return Array.from({length:n},(_,i)=>({
+    ...sh[i%sh.length],
+    id:Date.now()+'-'+i+'-'+Math.random().toString(36).slice(2,6),
+    ts:new Date(),
+    isNew:i<4,
+  }));
+}
+
+function ago(d){
+  const s=Math.floor((Date.now()-d)/1e3);
+  if(s<60)return`منذ ${s} ثانية`;
+  if(s<3600)return`منذ ${Math.floor(s/60)} دقيقة`;
+  return`منذ ${Math.floor(s/3600)} ساعة`;
+}
+function fph(p){return p&&p.startsWith('966')?'+'+p:p||null;}
+function salOk(j,f){
+  if(!f)return true;
+  const n=j.sn||0;
+  if(f==='low')return n<5000;
+  if(f==='mid')return n>=5000&&n<=10000;
+  if(f==='high')return n>10000;
+  return true;
+}
+
+// ═══════════════════════════════
+//  RENDER
+// ═══════════════════════════════
+function render(jobs,el){
+  if(!jobs.length){el.innerHTML=`<div class="nr"><div class="ic">🔍</div>لا توجد وظائف تطابق بحثك</div>`;return;}
+  el.innerHTML=jobs.map(j=>{
+    const m=SRC[j.src]||{s:'??',c:'#555',url:'#'};
+    const jUrl=j.jobUrl||m.url;
+    const ph=fph(j.ph);
+    return`
+    <div class="jc">
+      <div class="ss">
+        <div class="ssl">
+          <div class="ssic" style="background:${m.c}">${m.s}</div>
+          <div>
+            <div class="ssname">${j.src}</div>
+          </div>
+          <a href="${jUrl}" target="_blank" class="sslink">🔗 رابط الإعلان</a>
+        </div>
+        <div class="ssr">
+          <span class="pvbadge">🏢 خاص</span>
+          <span style="font-size:12px;color:var(--muted)">📍 جدة</span>
+        </div>
+      </div>
+      <div class="jci">
+        <div>
+          <div class="jh">
+            <div class="clogo">${j.ej}</div>
+            <div class="ji">
+              <div class="jtitle">${j.isNew?'<span class="bnew">جديد</span>':''}${j.t}</div>
+              <div class="jco">${j.co}</div>
+              <div class="jmeta">
+                <span class="mt ml">📍 ${j.loc}</span>
+                <span class="mt mty">⏰ ${j.ty}</span>
+                <span class="mt msal">💰 ${j.sal}</span>
+                <span class="mt mcat">${j.cat}</span>
+              </div>
+              <div class="jdesc">${j.desc}</div>
+            </div>
+          </div>
+        </div>
+        <div class="ja">
+          ${ph?`<a class="bwa" href="https://wa.me/${j.ph.replace(/\D/g,'')}?text=${encodeURIComponent('مرحباً، أود الاستفسار عن وظيفة '+j.t+' في '+j.co)}" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L0 24l6.335-1.493A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.821 9.821 0 01-5.003-1.366l-.359-.214-3.72.877.946-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.562 6.562 2.182 12 2.182S21.818 6.562 21.818 12 17.438 21.818 12 21.818z"/></svg>واتساب
+          </a>`:''}
+          <div class="ci2">
+            ${ph?`<div class="cr" onclick="cp(this,'${ph}')"><span>📞</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis">${ph}</span><span class="cpy">نُسخ!</span></div>`:''}
+            ${j.em?`<div class="cr" onclick="cp(this,'${j.em}')"><span>✉️</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;font-size:12px">${j.em}</span><span class="cpy">نُسخ!</span></div>`:''}
+          </div>
+        </div>
+      </div>
+      <div class="jf">
+        <span class="pt">🕒 ${ago(j.ts)}</span>
+        <span class="jtag">📍 جدة — خاص</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════
+//  FILTER
+// ═══════════════════════════════
+function getF(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  const ty=document.getElementById('filterType').value;
+  const sr=document.getElementById('filterSource').value;
+  const sa=document.getElementById('filterSalary').value;
+  return allJobs.filter(j=>{
+    const mC=curCat==='all'||j.cat===curCat;
+    const mQ=!q||[j.t,j.co,j.src,j.desc].some(x=>x.toLowerCase().includes(q));
+    const mT=!ty||j.ty===ty;
+    const mS=!sr||j.src===sr;
+    const mSa=salOk(j,sa);
+    return mC&&mQ&&mT&&mS&&mSa;
+  }).sort((a,b)=>{
+    if(curSort==='newest')return b.ts-a.ts;
+    if(curSort==='salary')return b.sn-a.sn;
+    if(curSort==='company')return a.co.localeCompare(b.co,'ar');
+    return 0;
+  });
+}
+
+function filterJobs(){
+  const f=getF();
+  render(f,document.getElementById('jobsGrid'));
+  document.getElementById('contentCount').textContent=`${f.length} وظيفة متاحة — القطاع الخاص`;
+  updCounts();
+}
+
+function updCounts(){
+  document.getElementById('cnt-all').textContent=allJobs.length;
+  CATS.forEach(c=>{const el=document.getElementById('cnt-'+c);if(el)el.textContent=allJobs.filter(j=>j.cat===c).length;});
+  document.getElementById('liveCount').textContent=allJobs.length;
+  Object.keys(SRC).forEach(s=>{
+    const el=document.getElementById('src-'+s.replace(/ /g,'_'));
+    if(el)el.textContent=allJobs.filter(j=>j.src===s).length;
+  });
+}
+
+function selCat(cat,btn){
+  curCat=cat;
+  document.querySelectorAll('.cb2').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const T={all:'وظائف جدة — القطاع الخاص',تصميم:'وظائف التصميم',تسويق:'وظائف التسويق',توصيل:'وظائف التوصيل',إدارية:'الوظائف الإدارية',عمال:'وظائف العمال',تقنية:'الوظائف التقنية',مبيعات:'وظائف المبيعات',محاسبة:'وظائف المحاسبة',تعليم:'وظائف التعليم الخاص',أمن:'وظائف الأمن',ضيافة:'وظائف الضيافة والمطاعم',لوجستيك:'وظائف اللوجستيك'};
+  document.getElementById('contentTitle').textContent=(T[cat]||cat)+' — جدة';
+  filterJobs();
+}
+
+function sortJ(s,btn){
+  curSort=s;
+  document.querySelectorAll('.sb2').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterJobs();
+}
+
+async function cp(el,text){
+  try{await navigator.clipboard.writeText(text);}
+  catch{const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
+  el.classList.add('copied');
+  setTimeout(()=>el.classList.remove('copied'),1800);
+  toast('📋 تم نسخ: '+text);
+}
+
+function toast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// Timer
+function startTimer(){
+  cd=60;updTimer();clearInterval(timerInt);
+  timerInt=setInterval(()=>{cd--;updTimer();if(cd<=0)refresh();},1000);
+}
+function updTimer(){
+  document.getElementById('timerNum').textContent=cd;
+  document.getElementById('timerRing').style.strokeDashoffset=C*(1-cd/60);
+}
+
+function refresh(){
+  if(allJobs.length>0){
+    archivedPages.unshift({jobs:[...allJobs],time:new Date(),page:pageIdx+1});
+    pageIdx++;
+    if(archivedPages.length>10)archivedPages.pop();
+    buildArchive();
+  }
+  allJobs=genBatch(14);
+  filterJobs();
+  document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+  toast('🔄 تم تحديث '+allJobs.length+' إعلان — جدة');
+  startTimer();
+}
+function manualRefresh(){refresh();}
+
+function buildArchive(){
+  const sec=document.getElementById('arcSec'),tabs=document.getElementById('pageTabs'),grid=document.getElementById('archiveGrid');
+  if(!archivedPages.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  tabs.innerHTML=archivedPages.map((p,i)=>`<button class="ptab ${i===0?'active':''}" onclick="showArc(${i},this)">صفحة ${p.page} — ${p.time.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}</button>`).join('');
+  render(archivedPages[0].jobs,grid);
+}
+function showArc(i,btn){
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render(archivedPages[i].jobs,document.getElementById('archiveGrid'));
+}
+
+// INIT
+buildSources();
+allJobs=genBatch(14);
+filterJobs();
+document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+startTimer();
+</script>
+</body>
+</html>
