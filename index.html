@@ -33,11 +33,10 @@ header{background:var(--primary);position:sticky;top:0;z-index:100;box-shadow:0 
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
 .cb{background:rgba(233,69,96,.22);border:1px solid rgba(233,69,96,.45);color:#ff8fa3;border-radius:50px;padding:5px 12px;font-size:13px;font-weight:700}
 
-/* ── CATS ── */
-.cats{background:var(--accent2);padding:0 24px;overflow-x:auto;scrollbar-width:none}
-.cats::-webkit-scrollbar{display:none}
-.ci{max-width:1320px;margin:0 auto;display:flex;gap:4px;padding:9px 0;white-space:nowrap}
-.cb2{padding:7px 17px;border:none;border-radius:50px;background:transparent;color:rgba(255,255,255,.65);font-family:'Tajawal',sans-serif;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+/* ── CATS GRID (فوق بعض) ── */
+.cats{background:var(--accent2);padding:12px 24px}
+.ci{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px}
+.cb2{padding:7px 17px;border:none;border-radius:50px;background:transparent;color:rgba(255,255,255,.65);font-family:'Tajawal',sans-serif;font-size:14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:5px}
 .cb2:hover{background:rgba(255,255,255,.12);color:#fff}
 .cb2.active{background:var(--accent);color:#fff;font-weight:700}
 .cc{background:rgba(255,255,255,.2);border-radius:50px;padding:1px 6px;font-size:11px}
@@ -85,6 +84,12 @@ select.fs{
 select.fs:focus{border-color:var(--accent)}
 .rb{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;margin-top:4px}
 .rb:hover{background:#c7314d;transform:translateY(-1px)}
+
+/* Stats bar */
+.stats-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:12px 16px;display:flex;gap:12px;flex-wrap:wrap}
+.stat-item{display:flex;flex-direction:column;align-items:center;flex:1;min-width:60px}
+.stat-num{font-size:20px;font-weight:900;color:var(--accent)}
+.stat-lbl{font-size:11px;color:var(--muted);text-align:center}
 
 /* ── CONTENT ── */
 .co{min-height:600px}
@@ -186,6 +191,7 @@ select.fs:focus{border-color:var(--accent)}
   </div>
 </header>
 
+<!-- فئات فوق بعض (flex-wrap) -->
 <div class="cats">
   <div class="ci">
     <button class="cb2 active" onclick="selCat('all',this)">🌐 الكل <span class="cc" id="cnt-all">0</span></button>
@@ -196,11 +202,11 @@ select.fs:focus{border-color:var(--accent)}
     <button class="cb2" onclick="selCat('عمال',this)">🔧 عمال <span class="cc" id="cnt-عمال">0</span></button>
     <button class="cb2" onclick="selCat('تقنية',this)">💻 تقنية <span class="cc" id="cnt-تقنية">0</span></button>
     <button class="cb2" onclick="selCat('مبيعات',this)">📊 مبيعات <span class="cc" id="cnt-مبيعات">0</span></button>
-    <button class="cb2" onclick="selCat('محاسبة',this)">📑 محاسبة <span class="cc" id="cnt-محاسبة">0</span></button>
     <button class="cb2" onclick="selCat('تعليم',this)">📚 تعليم خاص <span class="cc" id="cnt-تعليم">0</span></button>
-    <button class="cb2" onclick="selCat('أمن',this)">🔒 أمن وسلامة <span class="cc" id="cnt-أمن">0</span></button>
     <button class="cb2" onclick="selCat('ضيافة',this)">🍽 ضيافة ومطاعم <span class="cc" id="cnt-ضيافة">0</span></button>
     <button class="cb2" onclick="selCat('لوجستيك',this)">🏭 لوجستيك <span class="cc" id="cnt-لوجستيك">0</span></button>
+    <button class="cb2" onclick="selCat('مانشدايزر',this)">🛒 مانشدايزر <span class="cc" id="cnt-مانشدايزر">0</span></button>
+    <button class="cb2" onclick="selCat('مشتريات',this)">📦 مشتريات <span class="cc" id="cnt-مشتريات">0</span></button>
   </div>
 </div>
 
@@ -221,16 +227,21 @@ select.fs:focus{border-color:var(--accent)}
       <div class="tl">ثانية حتى التحديث</div>
     </div>
 
+    <!-- Stats -->
+    <div class="sc">
+      <div class="st">📊 إحصائيات الجلسة</div>
+      <div class="stats-bar">
+        <div class="stat-item"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">إجمالي الإعلانات</div></div>
+        <div class="stat-item"><div class="stat-num" id="statPages">0</div><div class="stat-lbl">دورات تحديث</div></div>
+        <div class="stat-item"><div class="stat-num" id="statSrcs">10</div><div class="stat-lbl">مصادر</div></div>
+      </div>
+    </div>
+
     <!-- Sources -->
     <div class="sc">
       <div class="st">🌐 مصادر الإعلانات</div>
       <div class="srcl" id="sourcesList"></div>
     </div>
-
-    <!-- Hidden filter inputs (used by JS only) -->
-    <select id="filterType" style="display:none"></select>
-    <select id="filterSource" style="display:none"></select>
-    <select id="filterSalary" style="display:none"></select>
 
     <button class="rb" onclick="manualRefresh()">🔄 تحديث الآن</button>
 
@@ -267,126 +278,111 @@ select.fs:focus{border-color:var(--accent)}
 //  CONFIG
 // ═══════════════════════════════
 let allJobs=[], archivedPages=[], curCat='all', curSort='newest', pageIdx=0, timerInt=null, cd=60;
-const C = 2*Math.PI*35; // ~220
+let totalAdsEver=0;
+const C = 2*Math.PI*35;
 
 const SRC = {
-  'Jobs Arab': {s:'JA', c:'#c0392b', url:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  'Bayt':      {s:'BY', c:'#1565c0', url:'https://www.bayt.com/ar/saudi-arabia/jobs/?filters%5Blocation_country_iso_code_ex%5D%5B0%5D=sa&filters%5Blocation_state_name_ar%5D%5B0%5D=%D8%AC%D8%AF%D8%A9'},
-  'Tanqeeb':   {s:'TQ', c:'#2e7d32', url:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  'Indeed SA': {s:'IN', c:'#1a237e', url:'https://sa.indeed.com/jobs?l=Jeddah&from=searchOnHP'},
-  'Baaeed':    {s:'BA', c:'#6a1b9a', url:'https://baaeed.com/'},
-  'LinkedIn':  {s:'LI', c:'#0077b5', url:'https://www.linkedin.com/jobs/search/?location=Jeddah%2C+Makkah+Province%2C+Saudi+Arabia'},
-  'Mustakbal': {s:'MS', c:'#00838f', url:'https://mustakbal.com/jobs?city=jeddah'},
-  'Wuzzuf':    {s:'WZ', c:'#bf360c',  url:'https://wuzzuf.net/search/jobs/?q=&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  'Jobs Arab':  {s:'JA', c:'#c0392b', url:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  'Bayt':       {s:'BY', c:'#1565c0', url:'https://www.bayt.com/ar/saudi-arabia/jobs/?filters%5Blocation_country_iso_code_ex%5D%5B0%5D=sa&filters%5Blocation_state_name_ar%5D%5B0%5D=%D8%AC%D8%AF%D8%A9'},
+  'Tanqeeb':    {s:'TQ', c:'#2e7d32', url:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  'Indeed SA':  {s:'IN', c:'#1a237e', url:'https://sa.indeed.com/jobs?l=Jeddah&from=searchOnHP'},
+  'Baaeed':     {s:'BA', c:'#6a1b9a', url:'https://baaeed.com/'},
+  'LinkedIn':   {s:'LI', c:'#0077b5', url:'https://www.linkedin.com/jobs/search/?location=Jeddah%2C+Makkah+Province%2C+Saudi+Arabia'},
+  'Mustakbal':  {s:'MS', c:'#00838f', url:'https://mustakbal.com/jobs?city=jeddah'},
+  'Wuzzuf':     {s:'WZ', c:'#bf360c', url:'https://wuzzuf.net/search/jobs/?q=&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  'OpenSooq':   {s:'OS', c:'#e67e22', url:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+  'Haraj':      {s:'HR', c:'#16a085', url:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
 };
 
 // ═══════════════════════════════
-//  JOB POOL — جدة القطاع الخاص
+//  JOB POOL
 // ═══════════════════════════════
 const JP=[
   // تصميم
-  {t:'مصمم جرافيك',co:'وكالة إبداع للتصميم',cat:'تصميم',ty:'دوام كامل',sn:7500,sal:'6,000 – 9,000 ريال',loc:'جدة - حي الروضة',desc:'مصمم جرافيك محترف بخبرة لا تقل عن سنتين في Adobe Suite وإنتاج مواد الطباعة والرقمية.',ph:'966556123411',em:'design@ibda3sa.com',src:'Bayt',ej:'🎨',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/graphic-designer-jeddah/'},
-  {t:'مصمم UI/UX',co:'تك ستارت السعودية',cat:'تصميم',ty:'دوام كامل',sn:12000,sal:'10,000 – 14,000 ريال',loc:'جدة - طريق الملك عبدالعزيز',desc:'مطلوب مصمم UI/UX لتطوير تطبيقات الجوال وواجهات الويب، خبرة Figma مطلوبة.',ph:'966512345678',em:'hr@techstart.sa',src:'LinkedIn',ej:'🖥',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=UI+UX+Designer&location=Jeddah'},
-  {t:'مصمم هوية بصرية',co:'ستوديو كريتف جدة',cat:'تصميم',ty:'عقد',sn:9000,sal:'7,500 – 11,000 ريال',loc:'جدة - حي التيسير',desc:'فرصة لمصمم هوية بصرية للانضمام إلى فريق إبداعي وتنفيذ مشاريع علامات تجارية.',ph:'966541235678',em:'jobs@creativestudio.sa',src:'Jobs Arab',ej:'✏️',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'مصور فوتوغرافي ومصمم',co:'ريل ميديا للإنتاج',cat:'تصميم',ty:'دوام جزئي',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - الكورنيش',desc:'مطلوب مصور ومصمم للعمل في تصوير المنتجات والمحتوى الرقمي لعملاء التجارة الإلكترونية.',ph:'966534567890',em:'info@realmedia.sa',src:'Baaeed',ej:'📷',
-    jobUrl:'https://baaeed.com/'},
-  {t:'مصمم إعلانات رقمية',co:'فلاشر ميديا جدة',cat:'تصميم',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الأندلس',desc:'تصميم إعلانات ميتا وجوجل وسناب، خبرة After Effects ميزة.',ph:'966543218765',em:'creative@flashermedia.sa',src:'Tanqeeb',ej:'🖼',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مصمم جرافيك',co:'وكالة إبداع للتصميم',cat:'تصميم',ty:'دوام كامل',sn:7500,sal:'6,000 – 9,000 ريال',loc:'جدة - حي الروضة',desc:'مصمم جرافيك محترف بخبرة لا تقل عن سنتين في Adobe Suite وإنتاج مواد الطباعة والرقمية.',ph:'966556123411',em:'design@ibda3sa.com',src:'Bayt',ej:'🎨',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/graphic-designer-jeddah/'},
+  {t:'مصمم UI/UX',co:'تك ستارت السعودية',cat:'تصميم',ty:'دوام كامل',sn:12000,sal:'10,000 – 14,000 ريال',loc:'جدة - طريق الملك عبدالعزيز',desc:'مطلوب مصمم UI/UX لتطوير تطبيقات الجوال وواجهات الويب، خبرة Figma مطلوبة.',ph:'966512345678',em:'hr@techstart.sa',src:'LinkedIn',ej:'🖥',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=UI+UX+Designer&location=Jeddah'},
+  {t:'مصمم هوية بصرية',co:'ستوديو كريتف جدة',cat:'تصميم',ty:'عقد',sn:9000,sal:'7,500 – 11,000 ريال',loc:'جدة - حي التيسير',desc:'فرصة لمصمم هوية بصرية للانضمام إلى فريق إبداعي وتنفيذ مشاريع علامات تجارية.',ph:'966541235678',em:'jobs@creativestudio.sa',src:'Jobs Arab',ej:'✏️',jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'مصور فوتوغرافي ومصمم',co:'ريل ميديا للإنتاج',cat:'تصميم',ty:'دوام جزئي',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - الكورنيش',desc:'مطلوب مصور ومصمم للعمل في تصوير المنتجات والمحتوى الرقمي لعملاء التجارة الإلكترونية.',ph:'966534567890',em:'info@realmedia.sa',src:'Baaeed',ej:'📷',jobUrl:'https://baaeed.com/'},
+  {t:'مصمم إعلانات رقمية',co:'فلاشر ميديا جدة',cat:'تصميم',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الأندلس',desc:'تصميم إعلانات ميتا وجوجل وسناب، خبرة After Effects ميزة.',ph:'966543218765',em:'creative@flashermedia.sa',src:'Tanqeeb',ej:'🖼',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مصمم جرافيك للتجارة الإلكترونية',co:'شوبي ستور السعودية',cat:'تصميم',ty:'دوام كامل',sn:7000,sal:'6,000 – 8,000 ريال',loc:'جدة - حي الصفا',desc:'تصميم صور المنتجات والبانرات والمحتوى المرئي لمتجر إلكتروني كبير.',ph:'966556991234',em:'design@shopisa.sa',src:'OpenSooq',ej:'🛍',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+
   // تسويق
-  {t:'مدير تسويق رقمي',co:'نيكست ليفل ماركتينج',cat:'تسويق',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - حي السلامة',desc:'خبرة 3 سنوات في إدارة حملات السوشيال ميديا وإعلانات Google و Meta.',ph:'966567891234',em:'talent@nextlevel.sa',src:'Bayt',ej:'📣',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/digital-marketing-manager-jeddah/'},
-  {t:'متخصص سوشيال ميديا',co:'أونلاين بوست',cat:'تسويق',ty:'دوام جزئي',sn:5500,sal:'4,500 – 6,500 ريال',loc:'جدة - عن بعد',desc:'إدارة حسابات التواصل الاجتماعي وصياغة المحتوى اليومي للعلامات التجارية.',ph:'966512398765',em:'social@onlinepost.sa',src:'Tanqeeb',ej:'📱',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  {t:'مسوّق محتوى رقمي',co:'ريد كونتنت',cat:'تسويق',ty:'عن بعد',sn:6500,sal:'5,000 – 8,000 ريال',loc:'جدة - عن بُعد',desc:'كتابة محتوى تسويقي باللغتين العربية والإنجليزية لمواقع التجارة الإلكترونية.',ph:'966523456789',em:'content@redco.sa',src:'Indeed SA',ej:'📝',
-    jobUrl:'https://sa.indeed.com/jobs?q=content+marketing&l=Jeddah'},
-  {t:'مدير تسويق — مطاعم',co:'فود كورنر الخليج',cat:'تسويق',ty:'دوام كامل',sn:11000,sal:'9,500 – 13,000 ريال',loc:'جدة - حي الحمراء',desc:'قيادة استراتيجية التسويق لسلسلة مطاعم في جدة وتطوير هوية العلامة التجارية.',ph:'966556001122',em:'marketing@foodcorner.sa',src:'LinkedIn',ej:'🍔',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Marketing+Manager&location=Jeddah'},
+  {t:'مدير تسويق رقمي',co:'نيكست ليفل ماركتينج',cat:'تسويق',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - حي السلامة',desc:'خبرة 3 سنوات في إدارة حملات السوشيال ميديا وإعلانات Google و Meta.',ph:'966567891234',em:'talent@nextlevel.sa',src:'Bayt',ej:'📣',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/digital-marketing-manager-jeddah/'},
+  {t:'متخصص سوشيال ميديا',co:'أونلاين بوست',cat:'تسويق',ty:'دوام جزئي',sn:5500,sal:'4,500 – 6,500 ريال',loc:'جدة - عن بعد',desc:'إدارة حسابات التواصل الاجتماعي وصياغة المحتوى اليومي للعلامات التجارية.',ph:'966512398765',em:'social@onlinepost.sa',src:'Tanqeeb',ej:'📱',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مسوّق محتوى رقمي',co:'ريد كونتنت',cat:'تسويق',ty:'عن بعد',sn:6500,sal:'5,000 – 8,000 ريال',loc:'جدة - عن بُعد',desc:'كتابة محتوى تسويقي باللغتين العربية والإنجليزية لمواقع التجارة الإلكترونية.',ph:'966523456789',em:'content@redco.sa',src:'Indeed SA',ej:'📝',jobUrl:'https://sa.indeed.com/jobs?q=content+marketing&l=Jeddah'},
+  {t:'مدير تسويق — مطاعم',co:'فود كورنر الخليج',cat:'تسويق',ty:'دوام كامل',sn:11000,sal:'9,500 – 13,000 ريال',loc:'جدة - حي الحمراء',desc:'قيادة استراتيجية التسويق لسلسلة مطاعم في جدة وتطوير هوية العلامة التجارية.',ph:'966556001122',em:'marketing@foodcorner.sa',src:'LinkedIn',ej:'🍔',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Marketing+Manager&location=Jeddah'},
+  {t:'مسوّق ميداني',co:'الوطنية للتوزيع',cat:'تسويق',ty:'دوام كامل',sn:6000,sal:'4,500 + عمولة',loc:'جدة - جميع الأحياء',desc:'تسويق منتجات غذائية في نقاط البيع وبناء علاقات مع العملاء الميدانيين.',ph:'966578001234',em:'field@watania-dist.sa',src:'Haraj',ej:'🚶',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+
   // توصيل
-  {t:'سائق توصيل',co:'نون السعودية',cat:'توصيل',ty:'دوام كامل',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - جميع الأحياء',desc:'توصيل طلبات العملاء في جدة الكبرى، يشترط رخصة قيادة سارية.',ph:'966555123456',em:'drivers@noon.com',src:'Indeed SA',ej:'🛵',
-    jobUrl:'https://sa.indeed.com/jobs?q=driver+delivery&l=Jeddah'},
-  {t:'مندوب توصيل — دوام مرن',co:'جهّز ديليفري',cat:'توصيل',ty:'دوام جزئي',sn:3500,sal:'2,500 – 4,000 ريال',loc:'جدة - شمال جدة',desc:'توصيل طلبات المطاعم والمحلات — دوام مرن — مكافآت يومية.',ph:'966567123456',em:'hr@jahhiz.sa',src:'Jobs Arab',ej:'🏍',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'سائق شاحنة خفيفة',co:'لوجستيك العرب',cat:'توصيل',ty:'دوام كامل',sn:6000,sal:'5,500 – 7,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'نقل بضائع بين المستودعات ونقاط التسليم في جدة، خبرة قيادة تجارية مطلوبة.',ph:'966543219876',em:'fleet@arablogistic.sa',src:'Tanqeeb',ej:'🚛',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  {t:'سائق خاص',co:'عائلة الزهراني',cat:'توصيل',ty:'دوام كامل',sn:4500,sal:'4,000 – 5,500 ريال',loc:'جدة - حي الزهراء',desc:'سائق خاص للعائلة، ساعات منتظمة، إقامة ورعاية صحية مشمولة.',ph:'966512001234',em:'',src:'Baaeed',ej:'🚗',
-    jobUrl:'https://baaeed.com/'},
+  {t:'سائق توصيل',co:'نون السعودية',cat:'توصيل',ty:'دوام كامل',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - جميع الأحياء',desc:'توصيل طلبات العملاء في جدة الكبرى، يشترط رخصة قيادة سارية.',ph:'966555123456',em:'drivers@noon.com',src:'Indeed SA',ej:'🛵',jobUrl:'https://sa.indeed.com/jobs?q=driver+delivery&l=Jeddah'},
+  {t:'مندوب توصيل — دوام مرن',co:'جهّز ديليفري',cat:'توصيل',ty:'دوام جزئي',sn:3500,sal:'2,500 – 4,000 ريال',loc:'جدة - شمال جدة',desc:'توصيل طلبات المطاعم والمحلات — دوام مرن — مكافآت يومية.',ph:'966567123456',em:'hr@jahhiz.sa',src:'Jobs Arab',ej:'🏍',jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'سائق شاحنة خفيفة',co:'لوجستيك العرب',cat:'توصيل',ty:'دوام كامل',sn:6000,sal:'5,500 – 7,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'نقل بضائع بين المستودعات ونقاط التسليم في جدة، خبرة قيادة تجارية مطلوبة.',ph:'966543219876',em:'fleet@arablogistic.sa',src:'Tanqeeb',ej:'🚛',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'سائق خاص',co:'عائلة الزهراني',cat:'توصيل',ty:'دوام كامل',sn:4500,sal:'4,000 – 5,500 ريال',loc:'جدة - حي الزهراء',desc:'سائق خاص للعائلة، ساعات منتظمة، إقامة ورعاية صحية مشمولة.',ph:'966512001234',em:'',src:'OpenSooq',ej:'🚗',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+  {t:'سائق توصيل بضائع',co:'قرطبة للتوزيع',cat:'توصيل',ty:'دوام كامل',sn:5200,sal:'4,500 – 6,000 ريال',loc:'جدة - المنطقة الجنوبية',desc:'توصيل بضائع للمحلات التجارية في جدة وضواحيها يومياً.',ph:'966534112233',em:'dist@qurtuba-dist.sa',src:'Haraj',ej:'📦',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+
   // إدارية
-  {t:'سكرتيرة تنفيذية',co:'مجموعة النخبة القابضة',cat:'إدارية',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الحمراء',desc:'خبرة 3 سنوات في العمل الإداري، إتقان Office وإجادة اللغة الإنجليزية.',ph:'966512309876',em:'admin@nokhbagroup.sa',src:'Bayt',ej:'🗂',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/executive-secretary-jeddah/'},
-  {t:'موظف استقبال — فندق',co:'جراند ريزورت جدة',cat:'إدارية',ty:'دوام كامل',sn:6000,sal:'5,000 – 7,000 ريال',loc:'جدة - الكورنيش',desc:'استقبال الضيوف، الرد على المكالمات، التنسيق مع الأقسام.',ph:'966556789012',em:'hr@grandresort.sa',src:'LinkedIn',ej:'🏨',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Receptionist&location=Jeddah'},
-  {t:'مشرف عمليات',co:'ألفا لوجستيكس جدة',cat:'إدارية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'الإشراف على العمليات اليومية وفرق العمل وتحقيق أهداف الأداء.',ph:'966523456012',em:'ops@alphalogistics.sa',src:'Mustakbal',ej:'📋',
-    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
-  {t:'مدير مكتب تنفيذي',co:'الخليج للاستشارات',cat:'إدارية',ty:'دوام كامل',sn:13000,sal:'11,000 – 15,000 ريال',loc:'جدة - حي الزهراء',desc:'إدارة المكتب التنفيذي وتنسيق اجتماعات مجلس الإدارة.',ph:'966598012345',em:'office@gulfconsult.sa',src:'Bayt',ej:'🏢',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/office-manager-jeddah/'},
-  {t:'موظف موارد بشرية',co:'الريان للتطوير',cat:'إدارية',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - حي الصفا',desc:'تعيين الموظفين، إعداد العقود، متابعة الحضور والإجازات.',ph:'966511234098',em:'hr@alrayan-dev.sa',src:'Indeed SA',ej:'👥',
-    jobUrl:'https://sa.indeed.com/jobs?q=HR&l=Jeddah'},
+  {t:'سكرتيرة تنفيذية',co:'مجموعة النخبة القابضة',cat:'إدارية',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الحمراء',desc:'خبرة 3 سنوات في العمل الإداري، إتقان Office وإجادة اللغة الإنجليزية.',ph:'966512309876',em:'admin@nokhbagroup.sa',src:'Bayt',ej:'🗂',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/executive-secretary-jeddah/'},
+  {t:'موظف استقبال — فندق',co:'جراند ريزورت جدة',cat:'إدارية',ty:'دوام كامل',sn:6000,sal:'5,000 – 7,000 ريال',loc:'جدة - الكورنيش',desc:'استقبال الضيوف، الرد على المكالمات، التنسيق مع الأقسام.',ph:'966556789012',em:'hr@grandresort.sa',src:'LinkedIn',ej:'🏨',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Receptionist&location=Jeddah'},
+  {t:'مشرف عمليات',co:'ألفا لوجستيكس جدة',cat:'إدارية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'الإشراف على العمليات اليومية وفرق العمل وتحقيق أهداف الأداء.',ph:'966523456012',em:'ops@alphalogistics.sa',src:'Mustakbal',ej:'📋',jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مدير مكتب تنفيذي',co:'الخليج للاستشارات',cat:'إدارية',ty:'دوام كامل',sn:13000,sal:'11,000 – 15,000 ريال',loc:'جدة - حي الزهراء',desc:'إدارة المكتب التنفيذي وتنسيق اجتماعات مجلس الإدارة.',ph:'966598012345',em:'office@gulfconsult.sa',src:'Bayt',ej:'🏢',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/office-manager-jeddah/'},
+  {t:'موظف موارد بشرية',co:'الريان للتطوير',cat:'إدارية',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - حي الصفا',desc:'تعيين الموظفين، إعداد العقود، متابعة الحضور والإجازات.',ph:'966511234098',em:'hr@alrayan-dev.sa',src:'Indeed SA',ej:'👥',jobUrl:'https://sa.indeed.com/jobs?q=HR&l=Jeddah'},
+  {t:'منسق إداري',co:'شركة السلام للخدمات',cat:'إدارية',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - حي الروضة',desc:'تنسيق المواعيد والاجتماعات وإعداد التقارير الإدارية اليومية.',ph:'966578223344',em:'admin@salamsv.sa',src:'OpenSooq',ej:'📌',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+
   // عمال
-  {t:'عمال بناء وتشطيب',co:'إنشاءات الخليج',cat:'عمال',ty:'دوام كامل',sn:4000,sal:'3,000 – 4,500 ريال',loc:'جدة - مشاريع متعددة',desc:'مطلوب عمال بناء ذوو خبرة في التشييد والسباكة والكهرباء.',ph:'966511234500',em:'workers@gulfbuild.sa',src:'Jobs Arab',ej:'🔨',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'عمال تنظيف',co:'النظافة الذهبية',cat:'عمال',ty:'دوام كامل',sn:3400,sal:'2,800 – 4,000 ريال',loc:'جدة - الأحياء الشمالية',desc:'وظائف تنظيف للمجمعات التجارية والسكنية. توفير سكن ووجبات.',ph:'966534509876',em:'clean@golden-clean.sa',src:'Indeed SA',ej:'🧹',
-    jobUrl:'https://sa.indeed.com/jobs?q=cleaning&l=Jeddah'},
-  {t:'عمال مستودع وتغليف',co:'ستور بلس جدة',cat:'عمال',ty:'دوام كامل',sn:4200,sal:'3,500 – 5,000 ريال',loc:'جدة - المنطقة الصناعية الجديدة',desc:'تحميل وتفريغ البضائع، ترتيب المستودع، إدارة المخزون.',ph:'966567043210',em:'warehouse@storeplus.sa',src:'Tanqeeb',ej:'📦',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  {t:'كهربائي صناعي',co:'تك باور للصناعة',cat:'عمال',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - المنطقة الصناعية',desc:'صيانة الأنظمة الكهربائية الصناعية، خبرة 3 سنوات مطلوبة.',ph:'966543200987',em:'electrical@techpower.sa',src:'Wuzzuf',ej:'⚡',
-    jobUrl:'https://wuzzuf.net/search/jobs/?q=electrician&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'عمال بناء وتشطيب',co:'إنشاءات الخليج',cat:'عمال',ty:'دوام كامل',sn:4000,sal:'3,000 – 4,500 ريال',loc:'جدة - مشاريع متعددة',desc:'مطلوب عمال بناء ذوو خبرة في التشييد والسباكة والكهرباء.',ph:'966511234500',em:'workers@gulfbuild.sa',src:'Jobs Arab',ej:'🔨',jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'عمال تنظيف',co:'النظافة الذهبية',cat:'عمال',ty:'دوام كامل',sn:3400,sal:'2,800 – 4,000 ريال',loc:'جدة - الأحياء الشمالية',desc:'وظائف تنظيف للمجمعات التجارية والسكنية. توفير سكن ووجبات.',ph:'966534509876',em:'clean@golden-clean.sa',src:'Haraj',ej:'🧹',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+  {t:'عمال مستودع وتغليف',co:'ستور بلس جدة',cat:'عمال',ty:'دوام كامل',sn:4200,sal:'3,500 – 5,000 ريال',loc:'جدة - المنطقة الصناعية الجديدة',desc:'تحميل وتفريغ البضائع، ترتيب المستودع، إدارة المخزون.',ph:'966567043210',em:'warehouse@storeplus.sa',src:'Tanqeeb',ej:'📦',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'كهربائي صناعي',co:'تك باور للصناعة',cat:'عمال',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - المنطقة الصناعية',desc:'صيانة الأنظمة الكهربائية الصناعية، خبرة 3 سنوات مطلوبة.',ph:'966543200987',em:'electrical@techpower.sa',src:'Wuzzuf',ej:'⚡',jobUrl:'https://wuzzuf.net/search/jobs/?q=electrician&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'سباك — صيانة منازل',co:'ماستر فيكس',cat:'عمال',ty:'دوام كامل',sn:5000,sal:'4,000 – 6,000 ريال',loc:'جدة - جميع الأحياء',desc:'صيانة أعمال السباكة للمجمعات السكنية والتجارية.',ph:'966534991122',em:'fix@masterfix.sa',src:'OpenSooq',ej:'🔧',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+
   // تقنية
-  {t:'مطور تطبيقات موبايل',co:'ديجيتال هب السعودية',cat:'تقنية',ty:'دوام كامل',sn:16000,sal:'13,000 – 19,000 ريال',loc:'جدة - حي الشاطئ',desc:'Flutter أو React Native، خبرة سنتان في نشر التطبيقات على Store و Play.',ph:'966512345609',em:'dev@digitalhub.sa',src:'LinkedIn',ej:'📱',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Mobile+Developer&location=Jeddah'},
-  {t:'مطور ويب Laravel/Vue',co:'كود فاكتوري',cat:'تقنية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - عن بعد',desc:'بناء مواقع وبوابات إلكترونية لعملاء السوق السعودي.',ph:'966523049876',em:'careers@codefactory.sa',src:'Wuzzuf',ej:'💻',
-    jobUrl:'https://wuzzuf.net/search/jobs/?q=web+developer&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
-  {t:'مسؤول أمن معلومات',co:'سيبر شيلد',cat:'تقنية',ty:'دوام كامل',sn:17000,sal:'14,000 – 20,000 ريال',loc:'جدة - حي العزيزية',desc:'إدارة شبكات المؤسسة واختبار الاختراق وتطبيق سياسات الأمن السيبراني.',ph:'966556780123',em:'security@cybershield.sa',src:'Bayt',ej:'🛡',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/cybersecurity-jeddah/'},
-  {t:'محلل بيانات',co:'داتا إنسايت العربية',cat:'تقنية',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - طريق المدينة المنورة',desc:'تحليل البيانات وبناء لوحات التحكم باستخدام Power BI وPython وSQL.',ph:'966534001122',em:'data@datainsight.sa',src:'Mustakbal',ej:'📈',
-    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مطور تطبيقات موبايل',co:'ديجيتال هب السعودية',cat:'تقنية',ty:'دوام كامل',sn:16000,sal:'13,000 – 19,000 ريال',loc:'جدة - حي الشاطئ',desc:'Flutter أو React Native، خبرة سنتان في نشر التطبيقات على Store و Play.',ph:'966512345609',em:'dev@digitalhub.sa',src:'LinkedIn',ej:'📱',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Mobile+Developer&location=Jeddah'},
+  {t:'مطور ويب Laravel/Vue',co:'كود فاكتوري',cat:'تقنية',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - عن بعد',desc:'بناء مواقع وبوابات إلكترونية لعملاء السوق السعودي.',ph:'966523049876',em:'careers@codefactory.sa',src:'Wuzzuf',ej:'💻',jobUrl:'https://wuzzuf.net/search/jobs/?q=web+developer&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'مسؤول أمن معلومات',co:'سيبر شيلد',cat:'تقنية',ty:'دوام كامل',sn:17000,sal:'14,000 – 20,000 ريال',loc:'جدة - حي العزيزية',desc:'إدارة شبكات المؤسسة واختبار الاختراق وتطبيق سياسات الأمن السيبراني.',ph:'966556780123',em:'security@cybershield.sa',src:'Bayt',ej:'🛡',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/cybersecurity-jeddah/'},
+  {t:'محلل بيانات',co:'داتا إنسايت العربية',cat:'تقنية',ty:'دوام كامل',sn:14000,sal:'12,000 – 17,000 ريال',loc:'جدة - طريق المدينة المنورة',desc:'تحليل البيانات وبناء لوحات التحكم باستخدام Power BI وPython وSQL.',ph:'966534001122',em:'data@datainsight.sa',src:'Mustakbal',ej:'📈',jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مهندس DevOps',co:'كلاود تك السعودية',cat:'تقنية',ty:'دوام كامل',sn:18000,sal:'15,000 – 22,000 ريال',loc:'جدة - حي الأندلس',desc:'إدارة بنية تحتية سحابية AWS/Azure، Docker، Kubernetes.',ph:'966567112244',em:'devops@cloudteksa.sa',src:'Tanqeeb',ej:'☁️',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+
   // مبيعات
-  {t:'مندوب مبيعات ميداني',co:'هاربور تريد',cat:'مبيعات',ty:'دوام كامل',sn:7000,sal:'5,000 + عمولة',loc:'جدة - البلد التجاري',desc:'بيع أجهزة كهربائية بالجملة وبناء علاقات مع تجار التجزئة.',ph:'966512098765',em:'sales@harbourtr.sa',src:'Indeed SA',ej:'📊',
-    jobUrl:'https://sa.indeed.com/jobs?q=sales+representative&l=Jeddah'},
-  {t:'مدير مبيعات إقليمي',co:'بريميوم كونسيومر',cat:'مبيعات',ty:'دوام كامل',sn:18000,sal:'15,000 – 22,000 ريال',loc:'جدة - جميع المناطق',desc:'قيادة فريق مبيعات ميداني وتحقيق أهداف المنطقة الغربية.',ph:'966567890123',em:'region@premiumco.sa',src:'Bayt',ej:'🏆',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/sales-manager-jeddah/'},
-  {t:'مستشار مبيعات عقارية',co:'ذا هومز العقارية',cat:'مبيعات',ty:'عقد',sn:9000,sal:'راتب + عمولة',loc:'جدة - حي الشاطئ',desc:'تسويق وبيع وحدات سكنية فاخرة في جدة.',ph:'966556112233',em:'sales@thehomes.sa',src:'Baaeed',ej:'🏠',
-    jobUrl:'https://baaeed.com/'},
-  // محاسبة
-  {t:'محاسب عام',co:'الواحة للاستثمار',cat:'محاسبة',ty:'دوام كامل',sn:8500,sal:'7,000 – 10,000 ريال',loc:'جدة - حي النزهة',desc:'إعداد الميزانيات والتقارير المالية الشهرية، خبرة سنتان.',ph:'966534012345',em:'finance@waha-invest.sa',src:'Tanqeeb',ej:'📑',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  {t:'مراجع حسابات داخلي',co:'مجموعة الفيصل التجارية',cat:'محاسبة',ty:'دوام كامل',sn:12000,sal:'10,000 – 14,000 ريال',loc:'جدة - برج الفيصلية',desc:'مراجعة العمليات المالية والتأكد من الامتثال للسياسات الداخلية.',ph:'966512345890',em:'audit@faisal-group.sa',src:'LinkedIn',ej:'🔍',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Accountant&location=Jeddah'},
-  {t:'مدير مالي',co:'أتلانتس للتجارة',cat:'محاسبة',ty:'دوام كامل',sn:19000,sal:'16,000 – 22,000 ريال',loc:'جدة - حي الزهراء',desc:'إدارة الشؤون المالية والتخطيط الاستراتيجي وإعداد التقارير.',ph:'966543298001',em:'cfo@atlantis-trade.sa',src:'Bayt',ej:'💼',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/finance-manager-jeddah/'},
-  // تعليم خاص
-  {t:'معلمة رياضيات — أهلية',co:'مدارس المستقبل الأهلية',cat:'تعليم',ty:'دوام كامل',sn:7500,sal:'6,000 – 8,500 ريال',loc:'جدة - حي الفيصلية',desc:'تدريس الرياضيات للمرحلتين المتوسطة والثانوية في مدارس خاصة.',ph:'966556001234',em:'edu@mustaqbal-schools.sa',src:'Mustakbal',ej:'📚',
-    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
-  {t:'مدرس لغة إنجليزية',co:'أكاديمية اللغات الدولية',cat:'تعليم',ty:'دوام جزئي',sn:4500,sal:'3,500 – 5,500 ريال',loc:'جدة - حي الصفا',desc:'تدريس اللغة الإنجليزية لجميع الأعمار في مركز لغات خاص.',ph:'966598765001',em:'english@intl-academy.sa',src:'Jobs Arab',ej:'🌍',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'مشرف أكاديمي',co:'مجموعة تعليم العالمية',cat:'تعليم',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - حي الروضة',desc:'الإشراف على المناهج وتدريب المعلمين في مجموعة مدارس خاصة.',ph:'966512554433',em:'academic@taleem-intl.sa',src:'Tanqeeb',ej:'🎓',
-    jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
-  // أمن خاص
-  {t:'حارس أمن — مجمع تجاري',co:'فيجيل الأمنية',cat:'أمن',ty:'دوام كامل',sn:4700,sal:'4,000 – 5,500 ريال',loc:'جدة - مجمعات تجارية',desc:'حراسة المنشآت التجارية الخاصة، لياقة جيدة مطلوبة.',ph:'966567001234',em:'security@vigilsa.sa',src:'Jobs Arab',ej:'🔒',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'مشرف أمن',co:'النخبة للحراسات',cat:'أمن',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - حي الحمراء',desc:'قيادة فريق حراسة لمنشأة تجارية كبرى، خبرة CCTV.',ph:'966543012987',em:'ops@nokhbasecurity.sa',src:'Bayt',ej:'🛡',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/security-supervisor-jeddah/'},
+  {t:'مندوب مبيعات ميداني',co:'هاربور تريد',cat:'مبيعات',ty:'دوام كامل',sn:7000,sal:'5,000 + عمولة',loc:'جدة - البلد التجاري',desc:'بيع أجهزة كهربائية بالجملة وبناء علاقات مع تجار التجزئة.',ph:'966512098765',em:'sales@harbourtr.sa',src:'Indeed SA',ej:'📊',jobUrl:'https://sa.indeed.com/jobs?q=sales+representative&l=Jeddah'},
+  {t:'مدير مبيعات إقليمي',co:'بريميوم كونسيومر',cat:'مبيعات',ty:'دوام كامل',sn:18000,sal:'15,000 – 22,000 ريال',loc:'جدة - جميع المناطق',desc:'قيادة فريق مبيعات ميداني وتحقيق أهداف المنطقة الغربية.',ph:'966567890123',em:'region@premiumco.sa',src:'Bayt',ej:'🏆',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/sales-manager-jeddah/'},
+  {t:'مستشار مبيعات عقارية',co:'ذا هومز العقارية',cat:'مبيعات',ty:'عقد',sn:9000,sal:'راتب + عمولة',loc:'جدة - حي الشاطئ',desc:'تسويق وبيع وحدات سكنية فاخرة في جدة.',ph:'966556112233',em:'sales@thehomes.sa',src:'Baaeed',ej:'🏠',jobUrl:'https://baaeed.com/'},
+  {t:'مندوب مبيعات أدوية',co:'فارما هيلث',cat:'مبيعات',ty:'دوام كامل',sn:8500,sal:'7,000 + عمولة',loc:'جدة - جميع الأحياء',desc:'تغطية الصيدليات والعيادات الخاصة وتقديم المنتجات الطبية.',ph:'966523009988',em:'pharma@pharmahealth.sa',src:'OpenSooq',ej:'💊',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+
+  // تعليم
+  {t:'معلمة رياضيات — أهلية',co:'مدارس المستقبل الأهلية',cat:'تعليم',ty:'دوام كامل',sn:7500,sal:'6,000 – 8,500 ريال',loc:'جدة - حي الفيصلية',desc:'تدريس الرياضيات للمرحلتين المتوسطة والثانوية في مدارس خاصة.',ph:'966556001234',em:'edu@mustaqbal-schools.sa',src:'Mustakbal',ej:'📚',jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'مدرس لغة إنجليزية',co:'أكاديمية اللغات الدولية',cat:'تعليم',ty:'دوام جزئي',sn:4500,sal:'3,500 – 5,500 ريال',loc:'جدة - حي الصفا',desc:'تدريس اللغة الإنجليزية لجميع الأعمار في مركز لغات خاص.',ph:'966598765001',em:'english@intl-academy.sa',src:'Jobs Arab',ej:'🌍',jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'مشرف أكاديمي',co:'مجموعة تعليم العالمية',cat:'تعليم',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - حي الروضة',desc:'الإشراف على المناهج وتدريب المعلمين في مجموعة مدارس خاصة.',ph:'966512554433',em:'academic@taleem-intl.sa',src:'Tanqeeb',ej:'🎓',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'معلم علوم ابتدائي',co:'مدارس الرواد الأهلية',cat:'تعليم',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - حي الزهراء',desc:'تدريس العلوم والبيئة للمرحلة الابتدائية في مدرسة أهلية.',ph:'966545112233',em:'sci@ruwad-schools.sa',src:'Haraj',ej:'🔬',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+
   // ضيافة
-  {t:'طاهٍ رئيسي',co:'مطعم كابريستو جدة',cat:'ضيافة',ty:'دوام كامل',sn:8000,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الزهراء',desc:'طاهٍ رئيسي متخصص في المطبخ الإيطالي أو الغربي، خبرة 4 سنوات في مطاعم راقية.',ph:'966512991100',em:'chef@capristo-jeddah.sa',src:'Indeed SA',ej:'👨‍🍳',
-    jobUrl:'https://sa.indeed.com/jobs?q=chef&l=Jeddah'},
-  {t:'موظف كاشير ومبيعات',co:'مقهى ريتشو',cat:'ضيافة',ty:'دوام جزئي',sn:3500,sal:'3,000 – 4,500 ريال',loc:'جدة - حي الأندلس',desc:'تشغيل الكاشير واستقبال الزبائن وتقديم المشروبات.',ph:'966567223344',em:'jobs@richocafe.sa',src:'Baaeed',ej:'☕',
-    jobUrl:'https://baaeed.com/'},
-  {t:'مدير مطعم',co:'سلسلة برجر كلاود',cat:'ضيافة',ty:'دوام كامل',sn:10000,sal:'9,000 – 12,000 ريال',loc:'جدة - فروع متعددة',desc:'إدارة عمليات الفرع والفريق وجودة الخدمة وتحقيق أهداف الإيرادات.',ph:'966534991234',em:'management@burgercloud.sa',src:'Mustakbal',ej:'🍔',
-    jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
-  {t:'نادل خدمة طاولات',co:'ريزورت باي جدة',cat:'ضيافة',ty:'دوام كامل',sn:4000,sal:'3,500 – 5,000 ريال',loc:'جدة - الكورنيش',desc:'خدمة الطاولات في مطعم فاخر، إجادة اللغة الإنجليزية ميزة.',ph:'966556443322',em:'fb@resortbay.sa',src:'Wuzzuf',ej:'🍽',
-    jobUrl:'https://wuzzuf.net/search/jobs/?q=waiter&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'طاهٍ رئيسي',co:'مطعم كابريستو جدة',cat:'ضيافة',ty:'دوام كامل',sn:8000,sal:'7,000 – 10,000 ريال',loc:'جدة - حي الزهراء',desc:'طاهٍ رئيسي متخصص في المطبخ الإيطالي أو الغربي، خبرة 4 سنوات في مطاعم راقية.',ph:'966512991100',em:'chef@capristo-jeddah.sa',src:'Indeed SA',ej:'👨‍🍳',jobUrl:'https://sa.indeed.com/jobs?q=chef&l=Jeddah'},
+  {t:'موظف كاشير ومبيعات',co:'مقهى ريتشو',cat:'ضيافة',ty:'دوام جزئي',sn:3500,sal:'3,000 – 4,500 ريال',loc:'جدة - حي الأندلس',desc:'تشغيل الكاشير واستقبال الزبائن وتقديم المشروبات.',ph:'966567223344',em:'jobs@richocafe.sa',src:'Baaeed',ej:'☕',jobUrl:'https://baaeed.com/'},
+  {t:'مدير مطعم',co:'سلسلة برجر كلاود',cat:'ضيافة',ty:'دوام كامل',sn:10000,sal:'9,000 – 12,000 ريال',loc:'جدة - فروع متعددة',desc:'إدارة عمليات الفرع والفريق وجودة الخدمة وتحقيق أهداف الإيرادات.',ph:'966534991234',em:'management@burgercloud.sa',src:'Mustakbal',ej:'🍔',jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
+  {t:'نادل خدمة طاولات',co:'ريزورت باي جدة',cat:'ضيافة',ty:'دوام كامل',sn:4000,sal:'3,500 – 5,000 ريال',loc:'جدة - الكورنيش',desc:'خدمة الطاولات في مطعم فاخر، إجادة اللغة الإنجليزية ميزة.',ph:'966556443322',em:'fb@resortbay.sa',src:'Wuzzuf',ej:'🍽',jobUrl:'https://wuzzuf.net/search/jobs/?q=waiter&filters%5Bcountry%5D%5B0%5D=saudi-arabia&filters%5Bcity%5D%5B0%5D=Jeddah'},
+  {t:'باريستا محترف',co:'كافيه مود جدة',cat:'ضيافة',ty:'دوام كامل',sn:4500,sal:'3,800 – 5,500 ريال',loc:'جدة - حي الشاطئ',desc:'إعداد المشروبات الساخنة والباردة واستقبال العملاء في مقهى عصري.',ph:'966523445566',em:'cafe@cafemodjeddah.sa',src:'OpenSooq',ej:'☕',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+
   // لوجستيك
-  {t:'مشرف مستودع',co:'العربية للتخزين',cat:'لوجستيك',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - المنطقة اللوجستية',desc:'إدارة عمليات المستودع وفريق العمل والمخزون وضمان الشحن بالوقت.',ph:'966523456700',em:'warehouse@arabstorage.sa',src:'Jobs Arab',ej:'🏭',
-    jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
-  {t:'منسق شحن وجمارك',co:'سيفر للشحن البحري',cat:'لوجستيك',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - ميناء الملك عبدالعزيز',desc:'تنسيق شحنات الاستيراد والتصدير وإجراءات الجمارك.',ph:'966567890100',em:'logistics@severshipping.sa',src:'Bayt',ej:'🚢',
-    jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/logistics-jeddah/'},
-  {t:'مخطط سلسلة توريد',co:'فلو سابلاي',cat:'لوجستيك',ty:'دوام كامل',sn:13000,sal:'11,000 – 16,000 ريال',loc:'جدة - حي الشرفية',desc:'تخطيط وتحسين سلسلة التوريد لعملاء التجارة الإلكترونية.',ph:'966512778899',em:'supply@flowsupply.sa',src:'LinkedIn',ej:'🔄',
-    jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Supply+Chain&location=Jeddah'},
+  {t:'مشرف مستودع',co:'العربية للتخزين',cat:'لوجستيك',ty:'دوام كامل',sn:8000,sal:'7,000 – 9,500 ريال',loc:'جدة - المنطقة اللوجستية',desc:'إدارة عمليات المستودع وفريق العمل والمخزون وضمان الشحن بالوقت.',ph:'966523456700',em:'warehouse@arabstorage.sa',src:'Jobs Arab',ej:'🏭',jobUrl:'https://www.jobs-arab.com/sa/job-location/%d8%ac%d8%af%d8%a9/'},
+  {t:'منسق شحن وجمارك',co:'سيفر للشحن البحري',cat:'لوجستيك',ty:'دوام كامل',sn:9000,sal:'8,000 – 11,000 ريال',loc:'جدة - ميناء الملك عبدالعزيز',desc:'تنسيق شحنات الاستيراد والتصدير وإجراءات الجمارك.',ph:'966567890100',em:'logistics@severshipping.sa',src:'Bayt',ej:'🚢',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/logistics-jeddah/'},
+  {t:'مخطط سلسلة توريد',co:'فلو سابلاي',cat:'لوجستيك',ty:'دوام كامل',sn:13000,sal:'11,000 – 16,000 ريال',loc:'جدة - حي الشرفية',desc:'تخطيط وتحسين سلسلة التوريد لعملاء التجارة الإلكترونية.',ph:'966512778899',em:'supply@flowsupply.sa',src:'LinkedIn',ej:'🔄',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Supply+Chain&location=Jeddah'},
+  {t:'موظف استقبال مستودع',co:'الريادة للتخزين',cat:'لوجستيك',ty:'دوام كامل',sn:5500,sal:'4,500 – 6,500 ريال',loc:'جدة - المنطقة الصناعية الثانية',desc:'استقبال البضائع وتسجيلها وإدارة أوامر الشحن الواردة والصادرة.',ph:'966598112244',em:'ops@ryadah-storage.sa',src:'Haraj',ej:'📋',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+
+  // مانشدايزر (جديد)
+  {t:'مانشدايزر سوبرماركت',co:'الدانوب',cat:'مانشدايزر',ty:'دوام كامل',sn:5500,sal:'4,500 – 6,500 ريال',loc:'جدة - فروع متعددة',desc:'ترتيب وعرض المنتجات في أقسام السوبرماركت وتطبيق معايير العرض.',ph:'966534001199',em:'merch@danube.sa',src:'Indeed SA',ej:'🛒',jobUrl:'https://sa.indeed.com/jobs?q=merchandiser&l=Jeddah'},
+  {t:'مانشدايزر مواد غذائية',co:'الوطنية للتوزيع',cat:'مانشدايزر',ty:'دوام كامل',sn:5000,sal:'4,000 – 5,500 ريال',loc:'جدة - جميع الأحياء',desc:'ترتيب المنتجات الغذائية في نقاط البيع المختلفة وضمان توافر المنتج.',ph:'966578001199',em:'merch@watania-dist.sa',src:'Tanqeeb',ej:'🥫',jobUrl:'https://saudi.tanqeeb.com/ar/jobs?city=%D8%AC%D8%AF%D8%A9'},
+  {t:'مانشدايزر — منتجات تجميل',co:'بيوتي هاوس جدة',cat:'مانشدايزر',ty:'دوام كامل',sn:5200,sal:'4,500 – 6,000 ريال',loc:'جدة - حي الأندلس',desc:'عرض منتجات العناية الشخصية والتجميل في المحلات الكبرى.',ph:'966556112299',em:'merch@beautyhouse.sa',src:'OpenSooq',ej:'💄',jobUrl:'https://sa.opensooq.com/ar/%D8%AC%D8%AF%D8%A9/%D9%88%D8%B8%D8%A7%D8%A6%D9%81/%D9%88%D8%B8%D8%A7%D8%A6%D9%81-%D8%B4%D8%A7%D8%BA%D8%B1%D8%A9'},
+  {t:'مانشدايزر أجهزة كهربائية',co:'إكسترا السعودية',cat:'مانشدايزر',ty:'دوام كامل',sn:6000,sal:'5,000 – 7,000 ريال',loc:'جدة - الفروع الكبرى',desc:'عرض وتنظيم أجهزة الإلكترونيات وضمان مظهر الرف الاحترافي.',ph:'966512009988',em:'merch@extra.com.sa',src:'Bayt',ej:'📺',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/merchandiser-jeddah/'},
+  {t:'مشرف مانشدايزر',co:'يونيليفر الخليج',cat:'مانشدايزر',ty:'دوام كامل',sn:9000,sal:'7,500 – 11,000 ريال',loc:'جدة - المنطقة الغربية',desc:'الإشراف على فريق المانشدايزر في المنطقة الغربية وضمان التوزيع.',ph:'966567009900',em:'tm@unilever-gulf.sa',src:'LinkedIn',ej:'👁',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Merchandiser+Supervisor&location=Jeddah'},
+
+  // مشتريات (جديد)
+  {t:'مسؤول مشتريات',co:'الخليج للصناعات الغذائية',cat:'مشتريات',ty:'دوام كامل',sn:9000,sal:'7,500 – 11,000 ريال',loc:'جدة - المنطقة الصناعية',desc:'إدارة عمليات الشراء والتفاوض مع الموردين وإعداد أوامر الشراء.',ph:'966512001155',em:'procurement@gulffood.sa',src:'Bayt',ej:'📦',jobUrl:'https://www.bayt.com/ar/saudi-arabia/jobs/procurement-officer-jeddah/'},
+  {t:'مدير مشتريات',co:'أراميكس السعودية',cat:'مشتريات',ty:'دوام كامل',sn:15000,sal:'13,000 – 18,000 ريال',loc:'جدة - طريق الملك عبدالعزيز',desc:'قيادة قسم المشتريات وبناء علاقات استراتيجية مع الموردين.',ph:'966567001177',em:'procurement@aramex-sa.com',src:'LinkedIn',ej:'🏷',jobUrl:'https://www.linkedin.com/jobs/search/?keywords=Procurement+Manager&location=Jeddah'},
+  {t:'موظف مشتريات وعطاءات',co:'شركة الإنشاءات المتحدة',cat:'مشتريات',ty:'دوام كامل',sn:8000,sal:'6,500 – 9,500 ريال',loc:'جدة - حي الشرفية',desc:'إعداد طلبات العروض والمناقصات ومتابعة توريد المواد.',ph:'966523778800',em:'tender@unitedbuild.sa',src:'Indeed SA',ej:'📝',jobUrl:'https://sa.indeed.com/jobs?q=procurement&l=Jeddah'},
+  {t:'مندوب مشتريات ميداني',co:'فريش مارت',cat:'مشتريات',ty:'دوام كامل',sn:6500,sal:'5,500 – 7,500 ريال',loc:'جدة - سوق الجملة',desc:'شراء الخضار والفواكه والمواد الغذائية من السوق المركزي للتوريد.',ph:'966556778800',em:'buy@freshmart.sa',src:'Haraj',ej:'🛍',jobUrl:'https://haraj.com.sa/search/%D9%85%D8%B7%D9%84%D9%88%D8%A8%20%D9%85%D9%88%D8%B8%D9%81/city/%D8%AC%D8%AF%D9%87'},
+  {t:'أخصائي سلاسل إمداد ومشتريات',co:'داربي لتقنية التشييد',cat:'مشتريات',ty:'دوام كامل',sn:11000,sal:'9,000 – 13,000 ريال',loc:'جدة - حي النزهة',desc:'تحليل احتياجات المشاريع وإدارة الموردين وتقليل تكاليف المشتريات.',ph:'966534667788',em:'scm@darbi-tech.sa',src:'Mustakbal',ej:'📊',jobUrl:'https://mustakbal.com/jobs?city=jeddah'},
 ];
 
-const CATS=['تصميم','تسويق','توصيل','إدارية','عمال','تقنية','مبيعات','محاسبة','تعليم','أمن','ضيافة','لوجستيك'];
+const CATS=['تصميم','تسويق','توصيل','إدارية','عمال','تقنية','مبيعات','تعليم','ضيافة','لوجستيك','مانشدايزر','مشتريات'];
 
 // ═══════════════════════════════
 //  BUILD SIDEBAR SOURCES
@@ -406,15 +402,44 @@ function buildSources(){
 }
 
 // ═══════════════════════════════
+//  STORAGE — تراكم الإعلانات
+// ═══════════════════════════════
+const STORAGE_KEY = 'wazaif_jeddah_pool';
+const MAX_POOL = 200; // أقصى عدد إعلانات في الذاكرة
+
+function loadPool(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const data = JSON.parse(raw);
+      // تحويل التواريخ
+      data.jobs = (data.jobs||[]).map(j=>({...j, ts: new Date(j.ts)}));
+      data.archived = (data.archived||[]).map(p=>({...p, time: new Date(p.time), jobs: p.jobs.map(j=>({...j, ts: new Date(j.ts)}))}));
+      return data;
+    }
+  } catch(e){}
+  return {jobs:[], archived:[], pageIdx:0, totalEver:0};
+}
+
+function savePool(jobs, archived, pIdx, tEver){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      jobs, archived, pageIdx: pIdx, totalEver: tEver,
+      savedAt: new Date().toISOString()
+    }));
+  } catch(e){}
+}
+
+// ═══════════════════════════════
 //  GENERATE
 // ═══════════════════════════════
-function genBatch(n=14){
+function genBatch(n=16){
   const sh=[...JP].sort(()=>Math.random()-.5);
   return Array.from({length:n},(_,i)=>({
     ...sh[i%sh.length],
     id:Date.now()+'-'+i+'-'+Math.random().toString(36).slice(2,6),
-    ts:new Date(),
-    isNew:i<4,
+    ts:new Date(Date.now() - Math.floor(Math.random()*3*60*1000)), // في آخر 3 دقائق
+    isNew:i<5,
   }));
 }
 
@@ -422,7 +447,8 @@ function ago(d){
   const s=Math.floor((Date.now()-d)/1e3);
   if(s<60)return`منذ ${s} ثانية`;
   if(s<3600)return`منذ ${Math.floor(s/60)} دقيقة`;
-  return`منذ ${Math.floor(s/3600)} ساعة`;
+  if(s<86400)return`منذ ${Math.floor(s/3600)} ساعة`;
+  return`منذ ${Math.floor(s/86400)} يوم`;
 }
 function fph(p){return p&&p.startsWith('966')?'+'+p:p||null;}
 function salOk(j,f){
@@ -443,6 +469,7 @@ function render(jobs,el){
     const m=SRC[j.src]||{s:'??',c:'#555',url:'#'};
     const jUrl=j.jobUrl||m.url;
     const ph=fph(j.ph);
+    const waNum = j.ph ? j.ph.replace(/\D/g,'') : '';
     return`
     <div class="jc">
       <div class="ss">
@@ -476,7 +503,7 @@ function render(jobs,el){
           </div>
         </div>
         <div class="ja">
-          ${ph?`<a class="bwa" href="https://wa.me/${j.ph.replace(/\D/g,'')}?text=${encodeURIComponent('مرحباً، أود الاستفسار عن وظيفة '+j.t+' في '+j.co)}" target="_blank">
+          ${waNum?`<a class="bwa" href="https://wa.me/${waNum}" target="_blank">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.845L0 24l6.335-1.493A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.821 9.821 0 01-5.003-1.366l-.359-.214-3.72.877.946-3.617-.234-.371A9.818 9.818 0 012.182 12C2.182 6.562 6.562 2.182 12 2.182S21.818 6.562 21.818 12 17.438 21.818 12 21.818z"/></svg>واتساب
           </a>`:''}
           <div class="ci2">
@@ -498,16 +525,10 @@ function render(jobs,el){
 // ═══════════════════════════════
 function getF(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
-  const ty=document.getElementById('filterType').value;
-  const sr=document.getElementById('filterSource').value;
-  const sa=document.getElementById('filterSalary').value;
   return allJobs.filter(j=>{
     const mC=curCat==='all'||j.cat===curCat;
-    const mQ=!q||[j.t,j.co,j.src,j.desc].some(x=>x.toLowerCase().includes(q));
-    const mT=!ty||j.ty===ty;
-    const mS=!sr||j.src===sr;
-    const mSa=salOk(j,sa);
-    return mC&&mQ&&mT&&mS&&mSa;
+    const mQ=!q||[j.t,j.co,j.src,j.desc,j.cat].some(x=>x&&x.toLowerCase().includes(q));
+    return mC&&mQ;
   }).sort((a,b)=>{
     if(curSort==='newest')return b.ts-a.ts;
     if(curSort==='salary')return b.sn-a.sn;
@@ -531,13 +552,15 @@ function updCounts(){
     const el=document.getElementById('src-'+s.replace(/ /g,'_'));
     if(el)el.textContent=allJobs.filter(j=>j.src===s).length;
   });
+  document.getElementById('statTotal').textContent=totalAdsEver;
+  document.getElementById('statPages').textContent=pageIdx;
 }
 
 function selCat(cat,btn){
   curCat=cat;
   document.querySelectorAll('.cb2').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  const T={all:'وظائف جدة — القطاع الخاص',تصميم:'وظائف التصميم',تسويق:'وظائف التسويق',توصيل:'وظائف التوصيل',إدارية:'الوظائف الإدارية',عمال:'وظائف العمال',تقنية:'الوظائف التقنية',مبيعات:'وظائف المبيعات',محاسبة:'وظائف المحاسبة',تعليم:'وظائف التعليم الخاص',أمن:'وظائف الأمن',ضيافة:'وظائف الضيافة والمطاعم',لوجستيك:'وظائف اللوجستيك'};
+  const T={all:'وظائف جدة — القطاع الخاص',تصميم:'وظائف التصميم',تسويق:'وظائف التسويق',توصيل:'وظائف التوصيل',إدارية:'الوظائف الإدارية',عمال:'وظائف العمال',تقنية:'الوظائف التقنية',مبيعات:'وظائف المبيعات',تعليم:'وظائف التعليم الخاص',ضيافة:'وظائف الضيافة والمطاعم',لوجستيك:'وظائف اللوجستيك',مانشدايزر:'وظائف المانشدايزر',مشتريات:'وظائف المشتريات'};
   document.getElementById('contentTitle').textContent=(T[cat]||cat)+' — جدة';
   filterJobs();
 }
@@ -562,7 +585,7 @@ function toast(m){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// Timer
+// ── TIMER ──
 function startTimer(){
   cd=60;updTimer();clearInterval(timerInt);
   timerInt=setInterval(()=>{cd--;updTimer();if(cd<=0)refresh();},1000);
@@ -572,26 +595,37 @@ function updTimer(){
   document.getElementById('timerRing').style.strokeDashoffset=C*(1-cd/60);
 }
 
+// ── REFRESH — يضيف الإعلانات الجديدة فوق القديمة ──
 function refresh(){
-  if(allJobs.length>0){
-    archivedPages.unshift({jobs:[...allJobs],time:new Date(),page:pageIdx+1});
+  const newBatch = genBatch(16);
+  totalAdsEver += newBatch.length;
+
+  // أضف الجديدة في الأول
+  allJobs = [...newBatch, ...allJobs];
+
+  // أرشفة إذا تجاوزنا الحد
+  if(allJobs.length > MAX_POOL){
+    const overflow = allJobs.splice(MAX_POOL);
+    archivedPages.unshift({jobs: overflow, time: new Date(), page: pageIdx+1});
     pageIdx++;
-    if(archivedPages.length>10)archivedPages.pop();
+    if(archivedPages.length > 15) archivedPages.pop();
     buildArchive();
   }
-  allJobs=genBatch(14);
+
   filterJobs();
+  savePool(allJobs, archivedPages, pageIdx, totalAdsEver);
   document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
-  toast('🔄 تم تحديث '+allJobs.length+' إعلان — جدة');
+  toast('🔄 أُضيف '+newBatch.length+' إعلان جديد — المجموع: '+allJobs.length);
   startTimer();
 }
+
 function manualRefresh(){refresh();}
 
 function buildArchive(){
   const sec=document.getElementById('arcSec'),tabs=document.getElementById('pageTabs'),grid=document.getElementById('archiveGrid');
   if(!archivedPages.length){sec.style.display='none';return;}
   sec.style.display='block';
-  tabs.innerHTML=archivedPages.map((p,i)=>`<button class="ptab ${i===0?'active':''}" onclick="showArc(${i},this)">صفحة ${p.page} — ${p.time.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}</button>`).join('');
+  tabs.innerHTML=archivedPages.map((p,i)=>`<button class="ptab ${i===0?'active':''}" onclick="showArc(${i},this)">دفعة ${p.page} — ${p.time.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}</button>`).join('');
   render(archivedPages[0].jobs,grid);
 }
 function showArc(i,btn){
@@ -600,10 +634,24 @@ function showArc(i,btn){
   render(archivedPages[i].jobs,document.getElementById('archiveGrid'));
 }
 
-// INIT
+// ── INIT — تحميل البيانات المحفوظة ──
 buildSources();
-allJobs=genBatch(14);
+
+const saved = loadPool();
+if(saved.jobs.length > 0){
+  allJobs = saved.jobs;
+  archivedPages = saved.archived;
+  pageIdx = saved.pageIdx;
+  totalAdsEver = saved.totalEver;
+  toast('📂 تم استعادة '+allJobs.length+' إعلان محفوظ');
+} else {
+  allJobs = genBatch(16);
+  totalAdsEver = allJobs.length;
+  savePool(allJobs, [], 0, totalAdsEver);
+}
+
 filterJobs();
+buildArchive();
 document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
 startTimer();
 </script>
